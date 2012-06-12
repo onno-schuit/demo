@@ -1,0 +1,32 @@
+<?php
+echo "<li id='item_{$item->id}'>";
+$url_save = $this->get_url('action=save&item_id='.$item->id);
+$url_delete = $this->get_url('action=delete&item_id='.$item->id);
+$owner = $this->get_owner($item, $edit = true);
+$priority_selectbox = $this->get_priority_selectbox($item);
+$this->ajax_form($html_attributes = array('action' => $this->get_url('action=save'), 'id' => "form_save_{$item->id}"),
+                 $js_validate = 'validate_item', 
+                 $js_callback = 'save_item',
+                 $target = '#todotwo_list',
+                 function() use ($item, $url_save, $url_delete, $owner, $priority_selectbox) {
+                     $checked = ($item->completed) ? " checked='checked' " : "";
+                     echo "{$owner}
+                           <div class='todotwo_item_completed'>
+                              <input type='hidden' name='item[completed]' value='0' />
+                              <input $checked type='checkbox' name='item[completed]' value='1' />
+                           </div>
+                           <div class='todotwo_item_title'>
+                               $priority_selectbox
+                               <input type='hidden' name='item[id]' value='{$item->id}' />
+                               <label for='item_title_{$item->id}'>Title:</label>
+                               <input style='width:300px;margin:0px;padding:0px;' class='text_field' type='text' value='{$item->title}' name='item[title]' id='item_title_{$item->id}' />
+                           </div>
+                           <a id='save_link_{$item->id}' onclick='$(this).parent(\"form\").submit();return false;' class='todotwo' href={$url_delete}'>save</a> | 
+                           <a id='delete_link_{$item->id}' class='todotwo delete' href='{$url_delete}'>delete</a>
+                           <div style='margin-left:150px;width:400px;' class='todotwo_item_note'>
+                               <label for='item_note_{$item->id}'>Note:</label>
+                               <textarea style='width:300px;' id='item_note_{$item->id}' name='item[note]'>{$item->note}</textarea>
+                           </div>";
+                 });
+echo "</li>";
+?>

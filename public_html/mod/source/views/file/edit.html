@@ -1,0 +1,12 @@
+<form method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" id="thnk_source_file_edit">
+    <?php
+    foreach (explode(',', 'id,controller,action,file_id,parent_id') as $hidden) {
+        if (isset($_REQUEST[$hidden])) $hidden_fields[$hidden] = $_REQUEST[$hidden];
+    }
+    echo $this->create_hidden_fields($hidden_fields);
+    ?>
+    File name: <input type="text" size="40" name="filename" value="<?php echo $file->filename; ?>" /><br />
+    Description: <input type="text" size="40" name="description" value="<?php echo $file->description; ?>" /><br />
+    <input type="submit" name="save" value="Save" />
+    <input type="submit" name="cancel" value="Cancel" id="thnk_source_button_cancel" />
+</form>

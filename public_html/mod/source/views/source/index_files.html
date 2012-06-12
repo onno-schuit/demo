@@ -1,0 +1,194 @@
+    <table id="thnk_source_files" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Modified</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($items as $item): ?>
+    <tr class="thnk_source_file_item">
+        <td class="toggle_description outerleft">
+        <?php if(isset($item->description) && !empty($item->description)):?><a href="#">&gt;</a><?php else: ?>&nbsp;<?php endif; ?>
+        </td>
+        <td>
+        <?php if($item->itemtype == 'folder'):?>
+            <a href="<?php echo $this->get_url('folder_id=' . (int)$item->id . '&controller=source'); ?>" class="folder"><?php echo source_helper::get_list_foldername($item); ?></a>
+        <?php else: ?>
+            <a href="<?php echo source_helper::get_download_url($item->filename); ?>"><?php echo source_helper::get_list_filename($item); ?></a>&nbsp;(<?php echo source_helper::get_filesize($item->filesize); ?>)
+        <?php endif; ?>
+        <?php if(isset($item->description) && !empty($item->description)):?><p class="description" style="display: none;"><?php echo $item->description; ?></p><?php endif; ?>
+        </td>
+        <td class="nowrap">
+        <?php if($item->itemtype == 'folder'):?>
+            Folder
+        <?php else: ?>
+            <?php echo source_helper::get_file_description($item->filename); ?>
+        <?php endif; ?>
+        </td>
+        <td class="nowrap">
+        <?php if($item->itemtype == 'folder'):?>
+            --
+        <?php else: ?>
+            <?php echo strftime('%e %b %Y %H:%M', $item->timemodified); ?>
+        <?php endif; ?>
+        </td>
+        <td class="outerright">
+            <div class="thnk_context"> <?php /* div is needed for position: absolute and display: block, for roll over menu */ ?>
+                <img class="dropdown" src="<?php echo $CFG->wwwroot; ?>/mod/source/images/dropdown.jpg" />
+                <ul class="thnk_contextmenu">
+                <?php 
+                    $delete_target = $item->itemtype;
+                    $parent_id = isset($_REQUEST['folder_id']) ? (int)$_REQUEST['folder_id'] : 0; 
+                ?>
+                <li>
+                    <form class="thnk_sources_delete" method="post" action="<?php echo $this->get_url("controller=$delete_target&action=delete"); ?>">
+                    <input type="hidden" name="<?php echo $delete_target; ?>_id" value="<?php echo $item->id; ?>" />
+                    <input type="hidden" name="parent_id" value="<?php echo $parent_id; ?>" />
+                    <input type="submit" value="delete" />
+                    </form>
+                </li>
+                <li>
+                    <a href="<?php echo $this->get_url("controller=$delete_target&action=edit&parent_id=$parent_id&{$delete_target}_id=" . $item->id); ?>" class="thnk_sources_edit">edit</a>
+                </li>
+                <?php if($item->itemtype == 'file'): ?>
+                <li>
+                    <a href="<?php echo sprintf("%s/mod/source/tree.php?id=%d&file_id=%d", $CFG->wwwroot, $cm->id, $item->files_id); ?>" class="thnk_sources_copy">copy to</a>
+                </li>
+                <?php endif; ?>
+                </ul>
+            </div>
+            &nbsp;
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    </table>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.thnk_sources_delete').bind('submit', function(e) {
+        if (!confirm('Delete?')) { return false; }
+		e.preventDefault(); // <-- important
+		$(this).ajaxSubmit({
+            dataType: 'html',
+            success: function(data, status) {
+                thnk_update_container_with(data);
+            }
+		});
+	});
+    $('#thnk_sources_search').bind('submit', function(e) {
+		e.preventDefault(); // <-- important
+		$(this).ajaxSubmit({
+            dataType: 'html',
+            extraData: {ajax_call: 1},
+            success: function(data, status) {
+                $('#thnk_sources').html(data);
+            }
+		});
+	});
+    $('.thnk_sources_edit').click(function(e) {
+        e.preventDefault();
+        $.get($(this).attr('href'), function(data) {
+            var elm = $(data);
+            elm.bind('submit', function(e) {
+        		e.preventDefault(); // <-- important
+        		$(this).ajaxSubmit({
+                    dataType: 'html',
+                    success: function(data, status) {
+                        thnk_update_container_with(data);
+                    }
+        		});
+                $(this).dialog('close');
+            });
+            elm.dialog({'title': 'Edit', 'width': 400, dialogClass: 'source_dlg'});
+        });
+    });
+
+    $('#thnk_source_button_cancel').remove(); // is also a submit button
+
+    $('.toggle_description').click(function(e) {
+  		e.preventDefault(); // <-- important
+        $(this).closest('tr').find('.description').toggle();
+    });
+    $('a.folder,#thnk_source_path a').click(function(e) {
+        e.preventDefault();
+        thnk_update_container($(this).attr('href'));
+    });
+    $('#thnk_sources_file_add').bind('submit', function(e) {
+		e.preventDefault(); // <-- important
+        $('#thnk_sources_busy').css('display', 'block');
+        $('#thnk_sources_button_add').css('display', 'none');
+		$(this).ajaxSubmit({
+			target: '#output',
+            dataType: 'html',
+            resetForm: true,
+            extraData: {
+                ajax_call: 1
+            },
+            success: function(data, status) {
+                $("#thnk_sources_file_add").dialog("close");
+                var url = $('#thnk_sources_file_add').attr('action');
+                url += '&parent_id=' + $('#thnk_sources_file_add input[name=parent_id]').val();
+                // hack for IE: although we already get new html data for updating, IE seems to break on it;
+                // so just update our complete view again 
+                thnk_update_container(url);
+            }
+		});
+	});
+    $('#thnk_sources_folder_add').bind('submit', function(e) {
+		e.preventDefault(); // <-- important
+		$(this).ajaxSubmit({
+			target: '#output',
+            dataType: 'html',
+            clearForm: true,
+            extraData: {
+                ajax_call: 1
+            },
+            success: function(data, status) {
+                $("#thnk_sources_folder_add").dialog("close"); 
+                thnk_update_container_with(data);
+            }
+		});
+	});
+
+    $('#thnk_source_type').change(function() {
+        $(this).closest('form').submit();
+    });
+    $(".thnk_sources_copy").click(function(e) {
+        e.preventDefault();
+        $.get($(this).attr('href'), function(data) {
+            var dlg = $(data);
+            dlg.dialog({
+                title: 'Copy to',
+                modal: true,
+                width: 500,
+                height: 500,
+                maxHeight: 500,
+                dialogClass: 'source_dlg'                
+            });
+            dlg.find('ul').treeview({
+                collapsed: true
+            });
+            dlg.find('.folder').click(function(e) {
+                $('.treeview span.folder').removeClass('selected');
+                $(this).addClass('selected');
+                $(this).closest('form').find('input[name=thnk_source_copy_to_id]').val($(this).attr('id'));
+            });
+            dlg.find('.folder:first').click();
+            dlg.bind('submit', function(e) {
+        		e.preventDefault(); // <-- important
+        		$(this).ajaxSubmit({
+                    dataType: 'html',
+                    extraData: {
+                        ajax_call: 1
+                    },
+                    success: function(data, status) {
+                        $("#thnk_sources_folder_add").dialog("close"); 
+                        thnk_update_container_with(data);
+                    }
+        		});
+                $(this).dialog('close');
+            });
+        }, 'html');
+    });
+});
+</script>

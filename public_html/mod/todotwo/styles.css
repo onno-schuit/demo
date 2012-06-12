@@ -1,0 +1,277 @@
+#todotwo_module { font-size: 12px; }
+#bar { padding-bottom:5px; height:10px; }
+#todotwo_module h2, #todotwo_module h3 { margin:0; }
+#todotwo_module h2 { font-size:1.5em;  padding-right:10px; background-color:#ffffff; }
+#todotwo_module h3 { border-bottom:2px solid #B5D5FF; margin-bottom:10px; padding:6px 0; font-size:1.1em; }
+/*
+.mtt-menu-button {
+ -moz-user-select:none; -webkit-user-select: none;
+ cursor:pointer;
+ border:1px solid transparent;
+}
+    */
+/*
+.mtt-menu-button:hover, .mtt-menu-button.mtt-menu-button-active { 
+ border:1px solid #ccc; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;
+}
+    */
+
+.arrdown { display:inline-block; height:7px; width:9px; background:url(../mod/todotwo/images/arrdown.gif); }
+#toolbar {
+
+}
+
+#todotwo_new_item, .todotwo_container ul li input.text_field { 
+    width: 400px;
+}
+
+.todotwo_container ul li input.text_field {
+    height: 24px;
+    width: 350px;
+    border: 1px inset #444444;
+}
+
+.todotwo_container ul {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+}
+
+.todotwo_container ul li {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DEDEDE;
+    margin-bottom: 1px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+    overflow: auto;
+}
+
+.todotwo_container ul li div {
+    float:left;
+}
+
+li.todotwo_editable {
+    padding-left:24px;padding-bottom:12px;padding-top:12px;
+}
+
+
+.todotwo_container ul li div.todotwo_editable_field {
+    display:block;float:none;margin-bottom:5px;
+}
+
+.todotwo_container ul li div.todotwo_editable_field label {
+    width:80px;
+}
+
+.todotwo_container ul label {
+  display:block;float:left;width:40px;
+}
+
+#todotwo_completed .todotwo_item_title span {
+    text-decoration: line-through;
+}
+
+#todotwo_completed .todotwo_item_title input {
+    text-decoration: none;
+}
+
+
+div.todotwo_item_completed {  padding-left: 6px; width: 24px; float:left}
+div.todotwo_item_completed input {  padding-left: 6px; }
+div.todotwo_item_title { width: 270px;  }
+
+div.todotwo_item_note {
+    border-top: 1px solid gray;
+    display: none;
+    vertical-align: top;
+    clear: both;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+div.todotwo_item_note textarea, div.todotwo_item_title input {
+  width:300px;
+}
+
+div.todotwo_item_timedue {
+    border:1px dashed white;padding-left:10px;float:left;width:80px;
+}
+
+.todotwo_note_button, .todotwo_note_collapse {
+    background: url(../mod/todotwo/images/icons.gif) no-repeat scroll -48px -16px transparent;
+    display: inline-block; height: 16px; width: 16px;
+}
+
+span.todotwo_note_collapse {
+    background: url(../mod/todotwo/images/icons.gif) no-repeat scroll -80px 0px transparent;
+}
+
+div.todotwo_item_priority  {
+    display:block-inline; text-align:center; width:20px; padding:1px; margin-right:3px; color:white;
+}
+
+.todotwo_priority_value_-1 {
+    background-color:#3377FF;
+}
+
+.todotwo_priority_value_1 {
+    background-color:#FF7700;
+}
+
+.todotwo_priority_value_2 {
+    background-color:#FF3333
+}
+
+
+/* new interface (like the file manager) */
+
+#todotwo_container table {
+    border: 1px solid #FFF;
+    width: 670px;
+}
+
+#todotwo_container tr.todotwo_item td {
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    vertical-align: top;
+}
+
+#todotwo_container .todotwo_item_actions {
+        width: 50px;
+        height: 16px;
+        position: relative;
+        display: block;
+    }
+#todotwo_container .todotwo_item_actions ul {
+        border: 1px solid #D6D6D6;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 0 #000000 inset;
+        display: none;
+        float: left;
+        left: 1px;
+        list-style: none outside none;
+        margin: 0;
+        min-width: 160px;
+        padding: 0;
+        position: absolute;
+        top: 16px;
+        z-index: 100;    
+    }
+#todotwo_container .todoto_item_actions li { 
+    border-bottom: medium none;
+    height: 16px;
+    margin: 0;
+    min-width: 160px;
+    padding: 3px 0;
+    display: block;
+    list-style: none outside none;
+  }    
+
+#todotwo_container .todotwo_item_actions li:hover { 
+	background-color: #D6d6d6;
+ }
+
+#todotwo_container .todotwo_item_actions:hover ul {
+    display: block;
+}
+
+#todotwo_container .todotwo_item_actions .dropdown {
+    display: none;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+}
+#todotwo_container tr:hover .dropdown {
+    display: inline;
+}
+
+#todotwo_container .todotwo_item_actions a {
+    background-color: transparent;
+    border: medium none;
+    display: block;
+    font-family: arial;
+    height: 16px;
+    margin: 0;
+    min-width: 160px;
+    padding: 0;
+    text-align: center;
+    line-height: 16px;
+}
+
+.todotwo_editable_field .ui-datepicker-trigger {
+    margin-bottom: 0;
+    position: relative;
+    top: 2px;
+}
+
+.todotwo_editable_field {
+    margin: 2px;
+    vertical-align: top;
+}
+
+.todotwo_editable_field label {
+    display: inline-block;
+    padding-right: 5px;
+    width: 70px;
+}
+
+.todotwo_editable_field textarea {
+    width: 300px;
+    vertical-align: top;
+ } 
+
+.todotwo_editable_field .save {
+    display: inline-block;
+    padding: 2px 15px;
+    border: 1px solid #333;
+    background-color: #DDD;
+    cursor: pointer;
+}
+
+#todotwo_container tr.todotwo_item:hover {
+    background-color: #F7FCFF;
+}
+
+#todotwo_container tr.todotwo_item:hover .owner {
+	border-left: 1px solid #2A5FA2;
+}
+
+#todotwo_container tr.todotwo_item:hover .last {
+	border-right: 1px solid #2A5FA2;
+}
+
+
+/* DATEPICKER */
+
+.ui-datepicker { width:190px; z-index:202; border: 1px solid #cccccc; background: #ffffff; display:none; padding:2px; 
+ -moz-box-shadow:1px 2px 5px rgba(0,0,0,0.5); -webkit-box-shadow:1px 2px 5px rgba(0,0,0,0.5); box-shadow:1px 2px 5px rgba(0,0,0,0.5); 
+ -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+}
+.ui-datepicker-trigger { cursor:pointer; vertical-align:text-bottom; margin-left:2px; width: 22px; height: 22px; padding: 0;}
+.ui-datepicker-trigger img {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: -1px;
+} 
+.ui-datepicker-calendar { width:100%; border-collapse:collapse; }
+.ui-datepicker-calendar thead th { text-align:center; padding:0px; font-size:0.9em; }
+.ui-datepicker-calendar tbody td { text-align:right; padding:1px;  }
+.ui-datepicker-calendar td a { display:block; text-decoration:none; color:#444444; border:1px solid #cccccc; background-color:#f9f9f9; color:#111; padding:1px; }
+.ui-datepicker-calendar td.ui-datepicker-current-day a { background-color:#EAF5FF; color:#222222; border-color:#5980FF; }
+.ui-datepicker-calendar td.ui-datepicker-today a { color:#fff; background-color:#ccc;  }
+.ui-datepicker-calendar td a:hover { border-color:#5980FF; }
+.ui-datepicker-header { padding:3px 0px; }
+.ui-datepicker-prev { position:absolute; left:2px; height:20px; text-decoration:none; }
+.ui-datepicker-next { position:absolute; right:2px; height:20px; text-decoration:none; }
+.ui-datepicker-title { text-align:center; line-height:20px;  }
+.ui-icon { width:16px; height:16px; text-indent:-99999px; overflow:hidden; }
+.ui-datepicker .ui-icon-circle-triangle-w { 
+    display:block; position:absolute; top:50%; margin-top:-8px; left:50%; 
+    background:url(../mod/todotwo/images/icons.gif) -48px -16px no-repeat; 
+}
+.ui-datepicker .ui-icon-circle-triangle-e { 
+    display:block; position:absolute; top:50%; margin-top:-8px; right:50%; 
+    background:url(../mod/todotwo/images/icons.gif) -32px -16px no-repeat; 
+}
+
+

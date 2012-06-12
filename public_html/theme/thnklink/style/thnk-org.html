@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>THNK. The Amsterdam School of Creative Leadership</title>
+
+    <script src="/wp-content/themes/thnk/static/js/modernizr-1.6.min.js"></script>
+	<script src="/wp-content/themes/thnk/static/js/jquery-1.5.1.min.js"></script>
+
+	<script src="/wp-content/themes/thnk/static/js/lbi.min.js"></script>
+	<script src="/wp-content/themes/thnk/static/js/articles.js"></script>
+	
+	<script  type="text/javascript">
+	try {
+	    var jqueryLoaded=jQuery;
+	    jqueryLoaded=true;
+	} catch(err) {
+	    var jqueryLoaded=false;
+	}
+	if (!jqueryLoaded) {
+	    var head= document.getElementsByTagName('head')[0];
+	    var script= document.createElement('script');
+	    script.type= 'text/javascript';
+	    script.src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
+	    head.appendChild(script);
+	}
+	</script>
+	<script type="text/javascript" src="http://downloads.mailchimp.com/js/jquery.form-n-validate.js"></script>
+	<script type="text/javascript">
+	
+	var fnames = new Array();var ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='GENDER';ftypes[3]='radio';fnames[0]='EMAIL';ftypes[0]='email';fnames[4]='MMERGE4';ftypes[4]='url';var err_style = '';
+	try{
+	    err_style = mc_custom_error_style;
+	} catch(e){
+	    err_style = 'margin: 1em 0 0 0; padding: 1em 0.5em 0.5em 0.5em; background: ERROR_BGCOLOR none repeat scroll 0% 0%; font-weight: bold; float: left; z-index: 1; width: 80%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: ERROR_COLOR;';
+	}
+	var head= document.getElementsByTagName('head')[0];
+	var style= document.createElement('style');
+	style.type= 'text/css';
+	if (style.styleSheet) {
+	  style.styleSheet.cssText = '.mce_inline_error {' + err_style + '}';
+	} else {
+	  style.appendChild(document.createTextNode('.mce_inline_error {' + err_style + '}'));
+	}
+	head.appendChild(style);
+	$(document).ready( function($) {
+	  var options = { errorClass: 'mce_inline_error', errorElement: 'div', onkeyup: function(){}, onfocusout:function(){}, onblur:function(){}  };
+	  var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
+	  options = { url: 'http://thnk.us2.list-manage.com/subscribe/post-json?u=3d8cd6f73d2dfb86b0ac735c8&id=01a7f81cea&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
+	                beforeSubmit: function(){
+	                    $('#mce_tmp_error_msg').remove();
+	                    $('.datefield','#mc_embed_signup').each(
+	                        function(){
+	                            var txt = 'filled';
+	                            var fields = new Array();
+	                            var i = 0;
+	                            $(':text', this).each(
+	                                function(){
+	                                    fields[i] = this;
+	                                    i++;
+	                                });
+	                            $(':hidden', this).each(
+	                                function(){
+	                                	if ( fields[0].value=='MM' && fields[1].value=='DD' && fields[2].value=='YYYY' ){
+	                                		this.value = '';
+										} else if ( fields[0].value=='' && fields[1].value=='' && fields[2].value=='' ){
+	                                		this.value = '';
+										} else {
+		                                    this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+		                                }
+	                                });
+	                        });
+	                    return mce_validator.form();
+	                },
+	                success: mce_success_cb
+	            };
+	  $('#mc-embedded-subscribe-form').ajaxForm(options);
+	});
+	function mce_success_cb(resp){
+	    $('#mce-success-response').hide();
+	    $('#mce-error-response').hide();
+	    if (resp.result=="success"){
+	        $('#mce-'+resp.result+'-response').show();
+	        $('#mce-'+resp.result+'-response').html(resp.msg);
+	        $('#mc-embedded-subscribe-form').each(function(){
+	            this.reset();
+	    	});
+	    } else {
+	        var index = -1;
+	        var msg;
+	        try {
+	            var parts = resp.msg.split(' - ',2);
+	            if (parts[1]==undefined){
+	                msg = resp.msg;
+	            } else {
+	                i = parseInt(parts[0]);
+	                if (i.toString() == parts[0]){
+	                    index = parts[0];
+	                    msg = parts[1];
+	                } else {
+	                    index = -1;
+	                    msg = resp.msg;
+	                }
+	            }
+	        } catch(e){
+	            index = -1;
+	            msg = resp.msg;
+	        }
+	        try{
+	            if (index== -1){
+	                $('#mce-'+resp.result+'-response').show();
+	                $('#mce-'+resp.result+'-response').html(msg);
+	            } else {
+	                err_id = 'mce_tmp_error_msg';
+	                html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
+
+	                var input_id = '#mc_embed_signup';
+	                var f = $(input_id);
+	                if (ftypes[index]=='address'){
+	                    input_id = '#mce-'+fnames[index]+'-addr1';
+	                    f = $(input_id).parent().parent().get(0);
+	                } else if (ftypes[index]=='date'){
+	                    input_id = '#mce-'+fnames[index]+'-month';
+	                    f = $(input_id).parent().parent().get(0);
+	                } else {
+	                    input_id = '#mce-'+fnames[index];
+	                    f = $().parent(input_id).get(0);
+	                }
+	                if (f){
+	                    $(f).append(html);
+	                    $(input_id).focus();
+	                } else {
+	                    $('#mce-'+resp.result+'-response').show();
+	                    $('#mce-'+resp.result+'-response').html(msg);
+	                }
+	            }
+	        } catch(e){
+	            $('#mce-'+resp.result+'-response').show();
+	            $('#mce-'+resp.result+'-response').html(msg);
+	        }
+	    }
+	}
+</script>
+
+
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    <link rel="stylesheet" media="all" href="/wp-content/themes/thnk/static/css/style.css">
+	<!--[if IE 7]><link rel="stylesheet" href="/wp-content/themes/thnk/static/css/ie7.css" type="text/css" media="screen" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" href="/wp-content/themes/thnk/static/css/ie8.css" type="text/css" media="screen" /><![endif]-->
+	<link rel="stylesheet" media="print" href="/wp-content/themes/thnk/static/css/print.css">
+
+    <link rel="pingback" href="http://www.thnk.org/xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="THNK. The Amsterdam School for Creative Leadership. &raquo; Article Feed" href="/feed?post_type=article">
+
+
+<script type="text/javascript">
+var TB_pluginPath = 'http://www.thnk.org/wp-content/plugins/tweet-blender';
+var TB_config = {
+'widget_show_photos':true,
+'widget_show_source':true,
+'widget_show_header':false,
+'general_link_screen_names':true,
+'general_link_hash_tags':true,
+'general_link_urls':true,
+'widget_check_sources':true,
+'widget_show_user':true,
+'archive_tweets_num':'20',
+'general_timestamp_format':false,
+'general_seo_tweets_googleoff':true,
+'general_seo_footer_googleoff':false,
+'widget_show_reply_link':false,
+'widget_show_follow_link':false,
+'archive_show_user':false,
+'archive_show_photos':true,
+'archive_show_source':false,
+'archive_is_disabled':false,
+'archive_show_reply_link':false,
+'archive_show_follow_link':false,
+'archive_auto_page':false,
+'archive_keep_tweets':'0',
+'advanced_reroute_on':false,
+'advanced_show_limit_msg':false,
+'advanced_disable_cache':false,
+'advanced_no_search_api':false,
+'filter_lang':' ',
+'filter_hide_mentions':false,
+'filter_hide_replies':false,
+'filter_location_name':false,
+'filter_location_dist':false,
+'filter_location_dist_units':false,
+'filter_bad_strings':false
+}</script>
+
+<link rel="alternate" type="application/rss+xml" title="THNK. The Amsterdam School of Creative Leadership. &raquo; Feed" href="http://www.thnk.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="THNK. The Amsterdam School of Creative Leadership. &raquo; Comments Feed" href="http://www.thnk.org/comments/feed/" />
+				
+	<script type="text/javascript">//<![CDATA[
+	// Google Analytics for WordPress by Yoast v4.06 | http://yoast.com/wordpress/google-analytics/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount','UA-17730191-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	// End of Google Analytics for WordPress by Yoast v4.0
+	//]]></script>
+<link rel='stylesheet' id='fbComments_hideWpComments-css'  href='http://www.thnk.org/wp-content/plugins/facebook-comments-for-wordpress/css/facebook-comments-hidewpcomments.css?ver=1.5.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mailchimpSF_main_css-css'  href='http://www.thnk.org/?mcsf_action=main_css&#038;ver=3.0.1' type='text/css' media='all' />
+<!--[if IE]>
+<link rel='stylesheet' id='mailchimpSF_ie_css-css'  href='http://www.thnk.org/wp-content/plugins/mailchimp/css/ie.css?ver=3.0.1' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='wp-polls-css'  href='http://www.thnk.org/wp-content/plugins/wp-polls/polls-css.css?ver=2.50' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://www.thnk.org/wp-content/plugins/contact-form-7/styles.css?ver=2.4.4' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/si-captcha-for-wordpress/captcha-secureimage/si_captcha.js?ver=3.0.1'></script>
+
+<script type='text/javascript' src='http://www.thnk.org/wp-includes/js/jquery/jquery.js?ver=1.4.2'></script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/contact-form-7/jquery.form.js?ver=2.52'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var mailchimpSF = {
+	ajax_url: "http://www.thnk.org/"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/mailchimp/js/mailchimp.js?ver=1.2'></script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/img-mouseover/img-mouseover.js?ver=20100209'></script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/tweet-blender/js/jquery.json-2.2.min.js?ver=3.0.1'></script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/tweet-blender/js/main.min.js?ver=3.0.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.thnk.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.thnk.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='THNK. The Amsterdam School of Creative Leadership.' href='http://www.thnk.org/' />
+
+<meta name="generator" content="WordPress 3.0.1" />
+
+<!-- All in One SEO Pack 1.6.13.2 by Michael Torbert of Semper Fi Web Design[162,352] -->
+<meta name="description" content="Details about the THNK Creative Leadership Program and personal acceleration. Designed to provoke, unleash and inspire a new breed of leaders." />
+<meta name="keywords" content="THNK, creative leadership, open leadership,  personal acceleration, creative class, creative economy, emphaty, prototyping, creative collaboration, Amsterdam School for Creative Leadership, innovation, real world, challenges, entrepreneurship, design thinking, dutch design, T-shaped leaders, applied learning, prototyping, school" />
+<link rel="canonical" href="http://www.thnk.org/" />
+<!-- /all in one seo pack -->
+<script type="text/javascript">
+//<![CDATA[
+var _wpcf7 = { cached: 1 };
+//]]>
+</script>
+<meta property='og:title' content='' />
+<meta property='og:site_name' content='THNK. The Amsterdam School of Creative Leadership.' />
+<meta property='og:url' content='' />
+<meta property='og:type' content='article' />
+<meta property='fb:app_id' content='154025794640346' />
+<!-- Quotes Collection -->
+<script type="text/javascript" src="http://www.thnk.org/wp-content/plugins/quotes-collection/quotes-collection.js"></script>
+
+<script type="text/javascript">
+  quotescollection_init('http://www.thnk.org/wp-content/plugins/quotes-collection/quotes-collection-ajax.php', 'Next quote&nbsp;&raquo;', 'Loading...', 'Error getting quote', '30');
+</script>
+	<link rel="stylesheet" type="text/css" href="http://www.thnk.org/wp-content/plugins/quotes-collection/quotes-collection.css" />
+	<style type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 6px;
+	line-height: 8px;
+	height: 8px;
+	background-image: url('http://www.thnk.org/wp-content/plugins/wp-polls/images/default/pollbg.gif');
+	border: 1px solid #c8c8c8;
+}
+</style>
+
+<!-- WP-SWFObject 2.3 by unijimpe -->
+<script src="http://www.thnk.org/wp-content/plugins/wp-swfobject/2.0/swfobject.js" type="text/javascript"></script>
+<link type="text/css" media="screen" rel="stylesheet" href="http://www.thnk.org/wp-content/plugins/tweet-blender/css/tweets.css" />
+
+    	
+    <meta property="og:image" content=""/>
+
+</head>
+
+<body class="home blog">
+    <div id="canvas">
+        <header id="header">
+            <div class="branding">
+                <a href="/"  title="Go to the homepage" rel="home"></a>
+            </div>
+            <nav class="menu-main">
+                                <ul id="menu-main"><li id="menu-item-3105" class="menu-item menu-item-type-post_type menu-item-3105"><a title="Program" href="http://www.thnk.org/program/">Program</a>
+
+<ul class="sub-menu">
+	<li id="menu-item-3314" class="menu-item menu-item-type-custom menu-item-3314"><a title="Elements" href="/program/#elements">Elements</a></li>
+	<li id="menu-item-3724" class="menu-item menu-item-type-custom menu-item-3724"><a title="Schedule" href="/program/#schedule">Schedule</a></li>
+	<li id="menu-item-6102" class="menu-item menu-item-type-custom menu-item-6102"><a href="/program/#dates">Important dates</a></li>
+	<li id="menu-item-3321" class="menu-item menu-item-type-custom menu-item-3321"><a title="Who should apply?" href="/program/#who">Who should apply?</a></li>
+	<li id="menu-item-3725" class="menu-item menu-item-type-custom menu-item-3725"><a title="Practical information" href="/program/#practical">Practical information</a></li>
+	<li id="menu-item-3721" class="menu-item menu-item-type-custom menu-item-3721"><a title="Compare THNK" href="/program/#compare">Compare THNK</a></li>
+
+	<li id="menu-item-4970" class="menu-item menu-item-type-custom menu-item-4970"><a title="Everyone Benefits" href="/program/#benefits">Everyone Benefits</a></li>
+</ul>
+</li>
+<li id="menu-item-3099" class="menu-item menu-item-type-post_type menu-item-3099"><a href="http://www.thnk.org/people/">People</a>
+<ul class="sub-menu">
+	<li id="menu-item-6212" class="menu-item menu-item-type-custom menu-item-6212"><a href="http://www.thnk.org/people/#participants">Founding participants</a></li>
+	<li id="menu-item-6015" class="menu-item menu-item-type-custom menu-item-6015"><a href="/people/#advisory">Advisory board</a></li>
+	<li id="menu-item-3752" class="menu-item menu-item-type-custom menu-item-3752"><a href="/people/#faculty">Faculty</a></li>
+
+	<li id="menu-item-3322" class="menu-item menu-item-type-custom menu-item-3322"><a title="Board" href="/people/#board">Board</a></li>
+	<li id="menu-item-3323" class="menu-item menu-item-type-custom menu-item-3323"><a title="Staff" href="/people/#staff">Staff</a></li>
+</ul>
+</li>
+<li id="menu-item-3102" class="menu-item menu-item-type-post_type menu-item-3102"><a href="http://www.thnk.org/activities/">Activities</a>
+<ul class="sub-menu">
+	<li id="menu-item-6116" class="menu-item menu-item-type-custom menu-item-6116"><a href="/activities/#recruitment">Recruitment</a></li>
+	<li id="menu-item-6140" class="menu-item menu-item-type-custom menu-item-6140"><a href="http://www.thnk.org/activities/#participants">Participants</a></li>
+
+	<li id="menu-item-3758" class="menu-item menu-item-type-custom menu-item-3758"><a title="THNKLabs" href="/activities/#thnklabs">THNKLabs</a></li>
+	<li id="menu-item-3759" class="menu-item menu-item-type-custom menu-item-3759"><a title="THNKGuests" href="/activities/#guests">THNKGuests</a></li>
+	<li id="menu-item-3757" class="menu-item menu-item-type-custom menu-item-3757"><a title="Research" href="/activities/#research">Research</a></li>
+</ul>
+</li>
+</ul>                                <div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+            </nav>
+            <nav class="meta">
+
+            	<ul id="menu-meta"><li id="menu-item-3450" class="menu-item menu-item-type-custom menu-item-3450"><a title="Stories" href="/document_type/Story">Stories</a></li>
+<li id="menu-item-3451" class="menu-item menu-item-type-custom menu-item-3451"><a title="News" href="/document_type/Newsdocument">News</a></li>
+<li id="menu-item-3447" class="menu-item menu-item-type-post_type menu-item-3447"><a title="About" href="http://www.thnk.org/about-thnk/">About</a></li>
+<li id="menu-item-3449" class="menu-item menu-item-type-post_type menu-item-3449"><a title="Support" href="http://www.thnk.org/supporters/">Supporters</a></li>
+<li id="menu-item-5837" class="menu-item menu-item-type-post_type menu-item-5837"><a href="http://www.thnk.org/press/">Press</a></li>
+<li id="menu-item-3448" class="menu-item menu-item-type-post_type menu-item-3448"><a title="Contact" href="http://www.thnk.org/contact/">Contact</a></li>
+</ul>
+<div id="search">
+	<form id="searchform" method="get" action="http://www.thnk.org/" >
+
+		<input type="text" value="Search" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" size="18" maxlength="50" name="s" id="searchfield" />
+		<input type="image" src="http://www.thnk.org/wp-content/themes/thnk/static/images/search.gif" id="submitbutton" alt="go" /></form>
+</div>
+				<section class="share">
+                	
+	<a title="Subscribe via RSS Feed" href="/feed?post_type=article"><img class="rss-sub" src="http://www.thnk.org/wp-content/themes/thnk/static/images/rss.jpg" alt="Subscribe via RSS Feed"></a>
+
+	<a target="_blank" title="Follow us on Twitter" rel="external" href="http://www.twitter.com/thnk_org"><img class="twitter-sub" src="http://www.thnk.org/wp-content/themes/thnk/static/images/twitter.jpg" alt="Follow us on Twitter"></a>
+
+	<a target="_blank" title="Connect with us on Facebook" rel="external" href="http://www.facebook.com/pages/THNKorg/112541555459472"><img class="facebook-sub" src="http://www.thnk.org/wp-content/themes/thnk/static/images/facebook.jpg" alt="Connect with us on Facebook"></a>
+
+	<a target="_blank" title="Connect with us on LinkedIn" rel="external" href="http://www.linkedin.com/company/969087"><img class="linkedin-sub" src="http://www.thnk.org/wp-content/themes/thnk/static/images/linkedin.jpg" alt="Connect with us on LinkedIn"></a>
+
+	<a target="_blank" title="Connect with me on Flickr" rel="external" href="http://www.flickr.com/photos/thnk_org/"><img class="flickr-sub" src="http://www.thnk.org/wp-content/themes/thnk/static/images/flickr.jpg" alt="Connect with me on Flickr"></a>
+
+                </section>
+            </nav>
+            <section class="header-logo"><img src="/wp-content/themes/thnk/static/images/header-logo.gif"></section>
+		</header>
+        <div id="content"><div style="margin-bottom:20px;">
+	<img src="/wp-content/themes/thnk/static/images/headers/quote-homepage.gif"></img>
+</div>
+
+<section>
+<!-- display the pillar's content in a div box -->
+ <article class="one-third">
+    <h3>program</h3>
+    <h2><a title="program" href="/program/">Learn by doing <br /> &#038; make it happen</a></h2>
+    <p>Breaking with the limitations of traditional education, at THNK you will work on challenges projects on the most important topics in life – with personal coaching and our unique Accelerator. Because we believe the next generation of leaders must be creative. And have the curiosity, courage and power to develop new ideas and solutions that transform the way you think. And work.</p>
+
+<p><a class="more" title="More details" href="program/">+ More details</a></p>
+ 		
+ </article><!-- display the pillar's content in a div box -->
+ <article class="one-third">
+    <h3>people</h3>
+    <h2><a title="people" href="/people/">Participants, Faculty, staff <br />&#038; board</a></h2>
+    <p>Among our founding team, we are proud to have amazing organizations and an international group of pioneering creative leaders. Including people from Stanford d.school, Droog Design, McKinsey &#038; Company, Indian School of Business, Philips Design – as well as designer Marcel Wanders, UNStudio architect Ben van Berkel and educational maverick, Esther Wojcicki.</p>
+
+<p><a class="more" title="Meet them" href="people/">+ Meet them</a></p>
+ 		
+ </article><!-- display the pillar's content in a div box -->
+ <article class="one-third">
+    <h3>activities</h3>
+    <h2><a title="activities" href="/activities/">Interviews with participants</a></h2>
+    <p>The first THNK Creative Leadership Program will begin on 17 March 2012. To create the ideal mix of participants, our recruitment team has been traveling to New York, Berlin, Paris, London and beyond. Who have they been talking with? And why are they interested in being part of THNK?</p>
+<p><a class="more" title="More info" href="activities/">+ Find out more</a></p>
+
+ 		
+ </article></section>
+
+	<section>
+<article class="three-quarts">
+    <h3>News</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6224" rel="bookmark" title="Vodafone participates in first Creative Leadership Program">Vodafone participates in first Creative Leadership Program</a></h2>        
+ 
+    <a href="http://www.thnk.org/?post_type=article&p=6224">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2012/01/mobile-phones-696x242.jpg" class="attachment-three-quart wp-post-image" alt="mobile phones" title="mobile phones" />    </a>
+             
+    <!-- Display the Post's excerpt in a div box. -->
+
+    <p>PRESS RELEASE | Vodafone Netherlands will be among the first companies to actively participate in THNK, the Amsterdam School of Creative Leadership.</p>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/ward-van-beek/" title="Posts by Ward van Beek">Ward van Beek</a></li>
+        <li><h6>Date:</h6> January 23rd, 2012</li>
+
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6224" rel="bookmark" title="Vodafone participates in first Creative Leadership Program">+ Read more</a>
+</article><article class="one-quart">
+    <h3>Story</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6182" rel="bookmark" title="No lectures, exams or paper-based cases">No lectures, exams or paper-based cases</a></h2>
+    
+    <a href="http://www.thnk.org/?post_type=article&p=6182">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2012/01/image-blog-post-Henk-2-696x242.jpg" class="attachment-three-quart wp-post-image" alt="Henk Galavazi, by Tristan Melano" title="Henk Galavazi, by Tristan Melano" />    </a>
+
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>PEOPLE | In the last week of 2011, the THNK Challenge Pilot was wrapped up. Pilot participant Henk Galavazi shares his views on 6 weeks of prototyping THNK. </p>
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/henk-galavazi/" title="Posts by Henk Galavazi">Henk Galavazi</a></li>
+
+        <li><h6>Date:</h6> January 6th, 2012</li>
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6182" rel="bookmark" title="No lectures, exams or paper-based cases">+ Read more</a>
+</article>
+
+</section>
+<section>
+<article class="one-third">
+    <h3>Story</h3>
+
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6167" rel="bookmark" title="I THNK, therefore I&#8217;m alive">I THNK, therefore I&#8217;m alive</a></h2>
+    <a href="http://www.thnk.org/?post_type=article&p=6167">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2011/12/Itai-Talmi-en-Siegfried-Woldhek-696x242.jpg" class="attachment-three-quart wp-post-image" alt="Itai Talmi and Siegfried Woldhek" title="Itai Talmi and Siegfried Woldhek" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>PEOPLE | Itai Talmi, a future THNKer, came over from Israel to get a feel for THNK and help out with the Challenge Pilot. And he loved it! Here are his first impressions&#8230;</p>
+    </div>
+
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/itai-talmi/" title="Posts by Itai Talmi">Itai Talmi</a></li>
+        <li><h6>Date:</h6> December 23rd, 2011</li>
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6167" rel="bookmark" title="I THNK, therefore I&#8217;m alive">+ Read more</a>
+
+</article>
+
+<article class="one-quart">
+    <h3>News</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6147" rel="bookmark" title="Stefano Marzano Founding Dean of THNK">Stefano Marzano Founding Dean of THNK</a></h2>
+    
+    <a href="http://www.thnk.org/?post_type=article&p=6147">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2011/12/Stefano-Marzano-696x242.jpg" class="attachment-three-quart wp-post-image" alt="Stefano Marzano" title="Stefano Marzano" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+
+        <p>PRESS RELEASE | Stefano Marzano, former Chief Design Officer of Royal Philips Electronics, is the Founding Dean of THNK. &#8220;It is wonderful for me to be involved with something that is so close to my heart,” says Marzano.</p>
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/ward-van-beek/" title="Posts by Ward van Beek">Ward van Beek</a></li>
+        <li><h6>Date:</h6> December 20th, 2011</li>
+
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6147" rel="bookmark" title="Stefano Marzano Founding Dean of THNK">+ Read more</a>
+</article>
+
+<article class="one-third facebook">
+    <h3>Facebook</h3>
+    <h2>Follow us to stay updated</h2>
+    <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FTHNKorg&amp;width=292&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=254"></iframe>
+
+</article></section>
+<section> <!-- Display the banner's Content in a div box. -->
+ <div class="banner">
+   <p><img src="/wp-content/uploads/2011/04/THNK_banner-001.gif" alt="" title="THNK banner" width="920" height="200" class="alignnone size-full wp-image-4610" /></p>
+ </div>
+</section>
+<section><article class="one-half">
+     <h3>News</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6073" rel="bookmark" title="THNK chooses Amsterdam Westergasfabriek as location for THNK Home">THNK chooses Amsterdam Westergasfabriek as location for THNK Home</a></h2>
+
+    <a href="http://www.thnk.org/?post_type=article&p=6073">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2011/11/Luchtfoto-Westergasterrein-by-Siebe-Swart-cropped-2-696x242.jpg" class="attachment-three-quart wp-post-image" alt="Luchtfoto Westergasterrein © Siebe Swart" title="Luchtfoto Westergasterrein © Siebe Swart" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>PRESS RELEASE|  THNK has chosen a location for its THNK home, the permanent residence for its future participants: the terrain of the former Amsterdam Gasworks (Westergasfabriek).</p>
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/ward-van-beek/" title="Posts by Ward van Beek">Ward van Beek</a></li>
+        <li><h6>Date:</h6> November 24th, 2011</li>
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6073" rel="bookmark" title="THNK chooses Amsterdam Westergasfabriek as location for THNK Home">+ Read more</a>
+</article><article class="one-half">
+     <h3>News</h3>
+
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6040" rel="bookmark" title="Ben van Berkel, International Architect and Educator, joins THNK Advisory Board">Ben van Berkel, International Architect and Educator, joins THNK Advisory Board</a></h2>
+    <a href="http://www.thnk.org/?post_type=article&p=6040">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2011/11/unstudiobyIngaPowilleit2-696x242.jpg" class="attachment-three-quart wp-post-image" alt="UNstudio © IngaPowilleit" title="UNstudio © IngaPowilleit" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>PRESS RELEASE | THNK, the Amsterdam School of Creative Leadership has added another creative leader to its team: Ben van Berkel, the co-founder and principal architect of UNStudio, has joined THNK’s Advisory Board.</p>
+    </div>
+
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/ward-van-beek/" title="Posts by Ward van Beek">Ward van Beek</a></li>
+        <li><h6>Date:</h6> November 17th, 2011</li>
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6040" rel="bookmark" title="Ben van Berkel, International Architect and Educator, joins THNK Advisory Board">+ Read more</a>
+
+</article></section>
+<section>
+<article class="one-third">
+    <h3>News</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6028" rel="bookmark" title="THNK Prototypes its Creative Leadership Program">THNK Prototypes its Creative Leadership Program</a></h2>
+    <a href="http://www.thnk.org/?post_type=article&p=6028">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2011/11/offices-3-cropped-696x242.jpg" class="attachment-three-quart wp-post-image" alt="Empty office by fsse8info (under Creative Commons)" title="Empty office by fsse8info (under Creative Commons)" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+
+        <p>PRESS RELEASE | Starting 16 November, THNK will work with teams of experts, users and leading designers and architects to prototype an important part of its new program; the Challenge. The theme of this Challenge Pilot: “Dealing with excess vacant office space in Amsterdam”. </p>
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/claire-taylor/" title="Posts by Claire Taylor">Claire Taylor</a></li>
+        <li><h6>Date:</h6> November 10th, 2011</li>
+
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6028" rel="bookmark" title="THNK Prototypes its Creative Leadership Program">+ Read more</a>
+</article>
+
+<article class="one-quart">
+    <h3>Story</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=6018" rel="bookmark" title="Disaster has many fathers. And accidents can change history.">Disaster has many fathers. And accidents can change history.</a></h2>
+    
+    <a href="http://www.thnk.org/?post_type=article&p=6018">
+        <img width="696" height="244" src="http://www.thnk.org/wp-content/uploads/2011/11/landing-columbus-cropped-696x244.jpg" class="attachment-three-quart wp-post-image" alt="First Landing of Columbus in New World, image by Library of Congress" title="First Landing of Columbus in New World, image by Library of Congress" />    </a>
+
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>BOOKS | Being disorganized has its advantages. It gives historian Charles Mann the patience to “go down unproductive rat holes for quite some time before I find something good.” And helps him achieve his goal of connecting the disconnected stories of history.</p>
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/claire-taylor/" title="Posts by Claire Taylor">Claire Taylor</a></li>
+
+        <li><h6>Date:</h6> November 2nd, 2011</li>
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=6018" rel="bookmark" title="Disaster has many fathers. And accidents can change history.">+ Read more</a>
+</article>
+
+<article class="one-quart">
+    <h3>News</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=5975" rel="bookmark" title="Award-winning educator Esther Wojcicki joins THNK Advisory Board">Award-winning educator Esther Wojcicki joins THNK Advisory Board</a></h2>
+
+    
+    <a href="http://www.thnk.org/?post_type=article&p=5975">
+        <img width="696" height="242" src="http://www.thnk.org/wp-content/uploads/2011/10/Esther-Wojcicki-Creative-Commons-Global-696x242.jpg" class="attachment-three-quart wp-post-image" alt="Esther Wojcicki Creative Commons Global by Darius Whelan" title="Esther Wojcicki Creative Commons Global by Darius Whelan" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>PRESS RELEASE | Esther Wojcicki – award-winning educational maverick, journalism and English teacher at Palo Alto High School, vice chair of the Creative Commons and journalist for The Huffington Post – has joined the advisory board of THNK, the Amsterdam School of Creative Leadership.</p>
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/claire-taylor/" title="Posts by Claire Taylor">Claire Taylor</a></li>
+        <li><h6>Date:</h6> October 20th, 2011</li>
+    </ul>
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=5975" rel="bookmark" title="Award-winning educator Esther Wojcicki joins THNK Advisory Board">+ Read more</a>
+</article>
+
+<article class="one-quart">
+    <h3>Story</h3>
+    <h2><a href="http://www.thnk.org/?post_type=article&p=5920" rel="bookmark" title="Born winners don’t exist. Neither do born losers.">Born winners don’t exist. Neither do born losers.</a></h2>
+    
+    <a href="http://www.thnk.org/?post_type=article&p=5920">
+        <img width="696" height="241" src="http://www.thnk.org/wp-content/uploads/2011/10/dweck_mindset-cropped-final-696x241.jpg" class="attachment-three-quart wp-post-image" alt="Dweck Mindset by Nigel Holmes" title="Dweck Mindset by Nigel Holmes" />    </a>
+        
+    <!-- Display the Post's excerpt in a div box. -->
+    <div class="entry">
+        <p>TEAMTALK | I can&#8217;t cook. I&#8217;m not creative. He&#8217;s stubborn. She is a genius. Yes, even positive labeling can lead to fixed mindset – and be detrimental. Luckily, our mindset can be influenced just by listening to other types of messages. </p>
+
+    </div>
+    <!-- Display the date (November 16th, 2009 format) and a link to other posts by this posts author. -->
+    <ul class="details">
+        <li><h6>Author:</h6> <a href="http://www.thnk.org/author/robert-wolfe/" title="Posts by Robert Wolfe">Robert Wolfe</a></li>
+        <li><h6>Date:</h6> October 14th, 2011</li>
+    </ul>
+
+    <a class="more" href="http://www.thnk.org/?post_type=article&p=5920" rel="bookmark" title="Born winners don’t exist. Neither do born losers.">+ Read more</a>
+</article>
+
+</section>
+<!--  <section>
+	<a href="?post_type=article&">+ View older posts</a>
+</section>
+ -->
+
+        </div><!-- /content -->
+        
+        <footer>
+    
+    
+    
+            <div id="site-info">
+                &copy; THNK. The Amsterdam School of Creative Leadership.                2012. All rights reserved. | <a href="/disclaimer" title="Go to the disclaimer"><strong>Disclaimer</strong></a>
+
+            </div><!-- #site-info -->
+            <div id="partners">
+                <a target="_blank" href="http://www.rijksoverheid.nl/ministeries/eleni"><img height="39" width="90" alt="Ministerie van Economische Zaken" src="/wp-content/themes/thnk/static/images/partners/ministerie.gif"></a>
+                <a target="_blank" href="http://www.iamsterdam.com/"><img height="39" width="107" alt="Gemeente Amsterdam" src="/wp-content/themes/thnk/static/images/partners/amsterdam.gif"></a>
+                <a target="_blank" href="http://www.noord-holland.nl/"><img height="39" width="90" alt="Provincie Noord-Holland" src="/wp-content/themes/thnk/static/images/partners/provincie-nh.gif"></a>
+                <a target="_blank" href="http://www.kvk.nl/English/"><img height="39" width="63" alt="Kamer van Koophandel Amsterdam" src="/wp-content/themes/thnk/static/images/partners/kvk.gif"></a>
+                <a target="_blank" href="http://www.stadsregioamsterdam.nl/niet_in_werken/losse_artikelen/information_in"><img height="39" width="113" alt="Stadsregio Amsterdam" src="/wp-content/themes/thnk/static/images/partners/stadsregio-amsterdam.gif"></a>
+            </div>
+    
+        </footer>
+
+	</div><!-- #canvas -->
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pollsL10n = {
+	ajax_url: "http://www.thnk.org/wp-content/plugins/wp-polls/wp-polls.php",
+	text_wait: "Your last request is still being processed. Please wait a while ...",
+	text_valid: "Please choose a valid poll answer.",
+	text_multiple: "Maximum number of choices allowed: ",
+	show_loading: "1",
+	show_fading: "1"
+};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/wp-polls/polls-js.js?ver=2.50'></script>
+<script type='text/javascript' src='http://www.thnk.org/wp-content/plugins/contact-form-7/scripts.js?ver=2.4.4'></script>
+<!--[if IE 8]><script src="/wp-content/themes/thnk/static/js/css3-mediaqueries.js"></script><![endif]-->
+</body>
+</html>

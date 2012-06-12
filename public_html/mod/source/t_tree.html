@@ -1,0 +1,13 @@
+<form method="post" action="<?php echo $CFG->wwwroot; ?>/mod/source/index.php?id=<?php echo $_REQUEST['id']; ?>&controller=file&action=copy">
+<ul id="browser" class="filetree treeview-famfamfam">
+<li>
+    <span class="folder" id="0">Root folder</span>
+    <ul>
+        <?php echo $tree; ?>
+    </ul>
+</li>
+</ul>
+<input type="hidden" name="thnk_source_copy_to_id" value="" />
+<input type="hidden" name="file_id" value="<?php echo $_REQUEST['file_id'];?>" />
+<input type="submit" value="Copy" />
+</form>

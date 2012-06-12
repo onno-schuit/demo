@@ -1,0 +1,38 @@
+<div class='todotwo_container' id='todotwo_container'>
+    <table>
+    <tbody id='todotwo_list'>
+    <?php 
+    foreach($items as $item) { 
+        if ($item->completed) continue;
+        include($this->get_partial_path('single_item'));
+    } ?>
+    </tbody>
+    <tbody id='todotwo_completed'>
+    <?php 
+    foreach($items as $item) { 
+        if (! $item->completed) continue;
+        include($this->get_partial_path('single_item'));
+    } ?>
+    </tbody>
+    </table>
+</div>
+<?php echo $this->ajax_link($container_id = 'todotwo_container', "a.delete", "delete_item"); ?>
+<?php echo $this->ajax_link($container_id = 'todotwo_container', "a.edit", "edit_item"); ?>
+<?php echo $this->ajax_link($container_id = 'todotwo_container',
+    "input.non-edit_checkbox",
+    "save_item",
+    $url = $this->get_url("action=toggle_completed&completed='+ ((\$(trigger).attr('checked')) ? 1 : 0) +'&field_name='+ \$(trigger).attr('name') +'"),
+    "click",
+    "true"); ?>
+<? if (!empty($focus)) { ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#todotwo_new_item').focus();
+    });
+</script>
+<? } ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#todotwo_total').text(<?php echo $this->count_items($items); ?>);
+    });
+</script>

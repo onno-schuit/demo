@@ -1,0 +1,40 @@
+<?php
+$checked = (empty($item->completed) || !$item->completed) ? "" : " checked='checked' ";
+$show_notes = '';
+$note = '';
+if (!empty($item->note) && trim($item->note) != '') {
+    $note = $item->note;
+    $show_notes = "<a href='#' onclick='this.blur();toggle_note_for_item_id({$item->id}); return false;'><span 
+                     style='background: url(images/buttons.png) no-repeat scroll 0 -48px transparent;
+                     display: inline-block;
+                     height: 16px;
+                     width: 16px;'></span></a>";
+}
+$owner = $this->get_owner($item);
+$priority = "";
+if ($item->priority) {
+    $priority_class = "todotwo_priority_value_{$item->priority}";
+    $priority = "<div 
+        style='
+        display:block-inline;
+        text-align:center;
+        width:20px;
+        padding:1px;
+        margin-right:3px;
+        color:white;' class='todotwo_item_priority $priority_class'>{$item->priority}</div>";
+
+}
+echo "<li id='item_{$item->id}'>
+        $owner
+        <div class='todotwo_item_completed' style='float:left'>
+            <input class='non-edit_checkbox' $checked type='checkbox' name='items[$item->id][completed]' value='1' />
+        </div>
+        <div class='todotwo_item_title'>
+            $priority
+            <span style='vertical-align:middle;'>{$item->title}</span> $show_notes
+        </div>
+        <div id='todotwo_item_note_{$item->id}' class='todotwo_item_note' style='border-top:1px solid gray;width:300px;display:none;margin-left:150px;'><span>{$note}</span></div>
+        <a id='edit_link_{$item->id}' class='todotwo edit' href='{$this->get_url('action=edit&item_id='.$item->id)}'>edit</a> | 
+        <a id='delete_link_{$item->id}' class='todotwo delete' href='{$this->get_url('action=delete&item_id='.$item->id)}'>delete</a>
+      </li>";
+?>

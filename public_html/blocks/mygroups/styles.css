@@ -1,0 +1,12 @@
+.block_mygroups .mygroupmember {
+	float: left;
+}
+
+.block_mygroups .mygroupmember img {
+    padding: 3px;
+
+}
+
+.block_mygroups .profilepicture {
+	margin-right: 0px;
+}

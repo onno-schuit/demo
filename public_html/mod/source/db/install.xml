@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/source/db" VERSION="20120228" COMMENT="XMLDB file for Moodle mod/source"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="source" COMMENT="Instance table for sources" NEXT="source_path">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course activitylist activity belongs to" PREVIOUS="id" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances" PREVIOUS="course" NEXT="intro"/>
+        <FIELD NAME="intro" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="General introduction of the activitylist" PREVIOUS="name" NEXT="introformat"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)" PREVIOUS="intro" NEXT="timecreated"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="introformat"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="source_path" COMMENT="source_path table retrofitted from MySQL" PREVIOUS="source" NEXT="source_file_group">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="source_id"/>
+        <FIELD NAME="source_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="parent_id"/>
+        <FIELD NAME="parent_id" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="source_id" NEXT="group_id"/>
+        <FIELD NAME="group_id" TYPE="int" LENGTH="11" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="parent_id" NEXT="path"/>
+        <FIELD NAME="path" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="group_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="source_id" UNIQUE="false" FIELDS="source_id" NEXT="parent_id"/>
+        <INDEX NAME="parent_id" UNIQUE="false" FIELDS="parent_id" PREVIOUS="source_id" NEXT="group_id"/>
+        <INDEX NAME="group_id" UNIQUE="false" FIELDS="group_id" PREVIOUS="parent_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="source_file_group" COMMENT="source_file_group table retrofitted from MySQL" PREVIOUS="source_path" NEXT="source_file_path">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="file_id"/>
+        <FIELD NAME="file_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="group_id"/>
+        <FIELD NAME="group_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="file_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id" NEXT="file_id"/>
+        <KEY NAME="file_id" TYPE="unique" FIELDS="file_id, group_id" PREVIOUS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="source_file_path" COMMENT="source_file_path table retrofitted from MySQL" PREVIOUS="source_file_group" NEXT="source_file">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="file_id"/>
+        <FIELD NAME="file_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="path_id"/>
+        <FIELD NAME="path_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="file_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="file_id" UNIQUE="false" FIELDS="file_id, path_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="source_file" COMMENT="source_file table retrofitted from MySQL" PREVIOUS="source_file_path">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="files_id"/>
+        <FIELD NAME="files_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="group_id"/>
+        <FIELD NAME="group_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="files_id" NEXT="path_id"/>
+        <FIELD NAME="path_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="group_id" NEXT="description"/>
+        <FIELD NAME="description" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="path_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="files_id" UNIQUE="false" FIELDS="files_id" NEXT="group_id"/>
+        <INDEX NAME="group_id" UNIQUE="false" FIELDS="group_id" PREVIOUS="files_id" NEXT="path_id"/>
+        <INDEX NAME="path_id" UNIQUE="false" FIELDS="path_id" PREVIOUS="group_id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

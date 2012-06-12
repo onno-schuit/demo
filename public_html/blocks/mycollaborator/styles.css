@@ -1,0 +1,12 @@
+.block_mycollaborator .mygroupmember {
+	float: left;
+}
+
+.block_mycollaborator .mygroupmember img {
+    padding: 3px;
+
+}
+
+.block_mycollaborator .profilepicture {
+	margin-right: 0px;
+}

@@ -1,0 +1,78 @@
+<?php /* <script type='text/javascript' src='<?= "{$CFG->wwwroot}/mod/todotwo/lib.js" ?>'></script> */ ?>
+<div id="thnk_sources">
+<? include_once($view_path); ?>
+
+
+</div>
+    
+
+<!--
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+-->
+<link rel="stylesheet" type="text/css" href="<?php echo $CFG->wwwroot; ?>/mod/source/jquery-ui.css" />
+<script src="<?php echo $CFG->wwwroot; ?>/mod/source/jquery.form.js"></script>
+<script src="<?php echo $CFG->wwwroot; ?>/mod/source/jquery.cookie.js"></script>
+<script src="<?php echo $CFG->wwwroot; ?>/mod/source/jquery.treeview.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $CFG->wwwroot; ?>/mod/source/jquery.treeview.css" />
+<script type="text/javascript">
+
+function show_add_file() {
+    $('#thnk_sources_file_add').dialog({
+        'title': "Add file", 'modal': true, 'dialogClass': 'source_dlg'
+    });
+    return false;
+}
+
+function show_add_folder() {
+    $('#thnk_sources_folder_add').dialog({
+        'title': "Add file", 'modal': true, 'dialogClass': 'source_dlg'
+    });
+    return false;
+}
+
+function file_change() {
+    var file_count = $('#thnk_sources_file_add_files input[type=file]').length; 
+    var new_file_html = '<p>File: <input type="file" name="newfile%d" id="thnk_source_newfile" /></p><p>Description: <input type="text" name="description%d" class="ajax" /></p>'
+    new_file_html = new_file_html.replace(/%d/g, file_count+1);
+    var new_file = $(new_file_html);
+    new_file.find('input[type=file]').change(function() { file_change(); });
+    $('#thnk_sources_file_add_files').append(new_file);
+}
+
+function updateElements(elements) {
+    for(var i in elements) {
+        var new_element = $(elements[i]);
+        $('#' + i).replaceWith(new_element);
+    }
+}
+
+function thnk_update_container_with(html_data) {
+    if (html_data.indexOf('error:') == 0) {
+        alert(html_data);
+        return;
+    }
+    // remove the file_add and folder_add forms first or they won't popup any more
+    $('#thnk_sources_file_add').remove();
+    $('#thnk_sources_folder_add').remove();
+    $('#thnk_sources').html(html_data);
+}
+
+function thnk_update_container(url, more_params, receive_multiple_elements) {
+    url = url + (url.indexOf('?') ? '&' : '?') + more_params;
+    url += '&ajax_call=1';
+    var dataType = receive_multiple_elements ? 'json' : 'html';
+    $.get(
+        url, 
+        function(data) {
+            if (data.update_elements && data.update_elements != 'undefined') {
+                updateElements(data.update_elements);
+            } else {
+                thnk_update_container_with(data);
+            }
+        },
+        dataType
+    );
+}
+  
+</script>

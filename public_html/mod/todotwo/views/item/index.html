@@ -1,0 +1,67 @@
+<?php global $USER ?>
+<script type="text/javascript" src="<?php echo $CFG->wwwroot;?>/theme/thnklink/javascript/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css" />
+<div id="toolbar">
+    <?php
+	$newitem = new Object();
+	$newitem->user_id = $USER->id;
+	$newitem->priority = 0;
+        $owner_selectbox = $this->get_owner_selectbox($newitem);
+        $priority_selectbox = $this->get_priority_selectbox($newitem);
+	echo $this->ajax_form($html_attributes = array('action' => $this->get_url('action=create')),
+                         $js_validate = 'validate_item', 
+                         $js_callback = 'add_item',
+                         $target = '#todotwo_list',
+                         function() use ($group,$owner_selectbox,$priority_selectbox) {
+				global $CFG;
+?>
+        <p>
+            <? $disabled = (empty($group)) ? " disabled='disabled' " : ""; ?>
+            <div class='todotwo_editable_field'>
+                <label for="todotwo_new_item">Title:</label>
+                <input id="todotwo_new_item" <?= $disabled ?> onfocus="restore_original();$('#extratodoinfo').slideDown();" type="text" name="item[title]" value="" />
+            </div>
+<div id="extratodoinfo" style="display:none;">
+            <div class='todotwo_editable_field'>
+                 <label for='item_timedue'>Due Date:</label>
+                 <input value='' id='item_timedue' type='text' name='item[timedue]' onfocus="restore_original()"/>
+            </div>
+            <?= $owner_selectbox ?>
+            <div class='todotwo_editable_field'>
+                <input type='hidden' name='item[completed]' value='0' />
+                <label for='item_completed'>Completed:</label>
+                <input id='item_completed' type='checkbox' name='item[completed]' value='1' onfocus="restore_original()"/>
+            </div>
+            <div class='todotwo_editable_field'>
+                  <label for='item_priority'>Priority:</label>
+                  <?=$priority_selectbox ?>
+            </div>
+            <div class='todotwo_editable_field'>
+                <label for="todotwo_new_item_note">Note:</label>
+                <textarea value="" name="item[note]" id="todotwo_new_item_note" <?= $disabled ?> onfocus="restore_original()"></textarea>
+            </div>
+</div>
+            <? if (empty($group)) { ?>
+                [Select a group first]
+            <? } else { ?>
+                <input type="submit" name="submit" value="Add"/>
+            <? } ?>
+        </p>
+	<script type='text/javascript'>
+            $(document).ready( function() {
+                $( '#item_timedue' ).datepicker({
+                     showOn: 'both',
+                     buttonImage: '<?=$CFG->wwwroot?>/mod/todotwo/images/calendar.png'
+                });
+            });
+        </script>
+    <?php }); ?>
+</div>
+<h3>
+    <span id="taskview" class="mtt-menu-button">
+        <span class="btnstr">My Tasks</span>
+        (<span id="todotwo_total"></span>)
+        <!-- <span class="arrdown"></span> -->
+    </span>
+</h3>
+<?php include($this->get_partial_path('list')); ?>

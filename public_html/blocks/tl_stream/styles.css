@@ -1,0 +1,214 @@
+#tl_homepage_stream h3 {
+	line-height: 1.2em;
+	text-transform: none;
+	font-size: 0.9em;
+	font-family: Georgia, "Times New Roman", Times, serif !important;
+	font-weight: bold;
+	float: left;
+}
+
+#tl_homepage_stream .tl_stream_item {
+	font-size: 1em;
+	border-bottom: 1px solid #D6D6D6;
+}
+
+.stream_icon {
+	width: 12px;
+	height: 12px;
+	display: block;
+	margin: 0;
+	margin-right: 5px;
+	margin-top: 2px;
+	float: left;
+	background-image: url(../blocks/tl_stream/images/transparent.png);
+}
+
+.tl_stream_images {
+	
+}
+
+#tl_stream_fold_in {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 0px;
+	width: 36px;
+	height: 34px;
+	display: block;
+}
+
+#tl_stream_fold_in:hover {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -41px;
+	width: 36px;
+	height: 34px;
+	display: block;
+}
+
+#tl_stream_fold_out {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -237px;
+	width: 36px;
+	height: 34px;
+	display: block;
+}
+
+#tl_stream_fold_out:hover {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -265px;
+	width: 36px;
+	height: 34px;
+	display: block;
+}
+
+#tl_stream_personal {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -161px;
+	width: 36px;
+	height: 43px;
+	display: none; /* hide initially */
+}
+#tl_stream_personal:hover {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -202px;
+	width: 36px;
+	height: 43px;
+	display: block;
+}
+
+.selected #tl_stream_personal {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -202px;
+	width: 36px;
+	height: 43px;
+	display: none; /* hide initially */
+}
+
+.selected #tl_stream_personal {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -202px;
+	width: 36px;
+	height: 43px;
+	display: none; /* hide initially */
+}
+
+#tl_stream_system {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -85px;
+	width: 36px;
+	height: 42px;
+	display: none; /* hide initially */
+}
+
+#tl_stream_system:hover {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -126px;
+	width: 36px;
+	height: 42px;
+	display: block;
+}
+
+.selected #tl_stream_system {
+	background-image: url("../blocks/tl_stream/images/stream-images.png");
+    background-position: 0 -126px;
+	width: 36px;
+	height: 42px;
+	display: none; /* hide initially */
+}
+
+.stream_icon_demo {
+	background-color: black;
+}
+
+.stream_icon_mdl_message {
+	background-color: #E02019;
+}
+
+.stream_icon_mdl_sent_message {
+	background-color: #005FA2;
+}
+
+.stream_icon_dm {
+	background-color: #005FA2;
+}
+
+.stream_icon_calendar {
+	background-color: #800040;
+}
+
+.stream_icon_forum {
+	background-color: #000000;
+}
+
+.tl_stream_read_more {
+	display: block;
+	margin: 2px 0 0;
+}
+
+#tl_homepage_stream_handle {
+	padding: 2px;
+	color: black;
+	width: 100%;
+	line-height: 20px;
+}
+
+#tl_homepage_stream_handle .handle_button {
+	float: left;
+}
+
+#tl_homepage_stream_handle .selected {
+	color: red;
+}
+
+#tl_homepage_stream_handle .handle_button:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#tl_stream_items {
+	padding-right: 20px;
+	min-height: 300px;
+}
+
+#tl_stream_new_message textarea {
+	width: 195px;
+	border: 1px solid #AAA;
+	margin-bottom: 5px;
+}
+
+label.tl_stream_delete {
+	cursor: pointer;
+	display: block;
+}
+
+#tl_stream_get_more {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid gray;
+	border-left: none;
+	border-right: none;
+	width: 80px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+#tl_stream_items {
+	font-family: Georgia, "Times New Roman", Times, serif !important;
+}
+
+#tl_stream_items a {
+	color: #0260A0 !important;
+	text-decoration: none;
+}
+
+.tl_date {
+	float: right;
+}
+
+.tl_contents {
+	margin-left: 20px;
+	padding-bottom: 20px;
+}
+
+.tl_stream_delete {
+	float: right;
+}

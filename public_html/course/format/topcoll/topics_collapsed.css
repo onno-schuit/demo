@@ -1,0 +1,152 @@
+/**
+ * Collapsed Topics Information
+ *
+ * @package    course/format
+ * @subpackage topcoll
+ * @copyright  2009-2011 @ G J Barnard.
+ * @link       http://docs.moodle.org/en/Collapsed_Topics_course_format
+ * @license    http://creativecommons.org/licenses/by-sa/3.0/ Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+ */
+
+/* -- The Toggle's row -- */
+tr.cps {
+  display: table-row;
+}
+
+/* -- The table data section of a Toggle's row -- */
+tr.cps td {
+  text-align: left;
+  font-size: 28px;
+  font-family: 'NeubauGrotesk55Normal';
+  padding: 0px;
+  width: auto;
+  line-height: 1.3em;
+}
+
+/* -- The topic summary text -- */    
+tr.cps td span {
+  font-size: 1.2em;
+  font-style: italic;
+  text-align: left;
+}
+
+/* -- For when no summary is entered */       
+tr.cps td a.cps_nosumm, tr.cps td a.section_names {
+   text-align: center;
+   padding: 20px 0 5px;
+}  
+
+/* -- For centring the 'Topic x' text -- */       
+tr.cps td.cps_centre {
+     text-align: center;
+     font-size: 0.6em;
+}  
+       
+/* -- Set the clickable element of the Toggle -- */
+tr.cps td a {
+  display: block;
+  
+  text-align: left;
+  background: url("menu-item-up.gif") no-repeat scroll center top transparent;/* Position the arrow roughly in the centre of the Toggle */
+  width: auto;
+}
+
+/* -- For setting unique theme based toggle colours, move the following 'tr.cps', 'tr.cps td a' and
+      'tr.cps td a:hover' definitions from here and into all your themes, then customise.  -- */
+/* -- Toggle row -- */
+tr.cps {
+  background-color: #FFF;
+  color: #000000; /* 'Topic x' text colour */
+  
+  	-moz-box-shadow: 0 0 5px #D1D1D1;
+	-webkit-box-shadow: 0 0 5px #D1D1D1;
+	box-shadow: 0 0 5px #D1D1D1;
+}
+
+/* -- Toggle text -- */
+tr.cps td a {
+  text-decoration: none;
+  color: #000000;
+}
+
+/* -- What happens when a toggle is hovered over -- */
+
+tr.cps td a:hover {
+  background: url("menu-item.gif") no-repeat scroll center top transparent;
+  color: #005FA2;
+}
+
+
+/* -- For Internet Explorer inability to deal with column calculations when a colspan is used -- */     
+#thetopics .section td.content, #thetopics  col.content {
+  width: 100%;
+  text-align: left;
+}
+
+/* -- Where the Toggle's arrow png is -- */
+#thetopics .section td.left, #thetopics  col.left {
+  width: 28px; /* If the arrow's width changes, change this and the padding of 'tr.cps td a' in js-override-topcoll.css */
+}
+
+/*
+#thetopics .thkcoursesec {
+	border-left: 1px solid #D6D6D6;
+	border-bottom: 1px solid #D6D6D6;
+	border-right: 1px solid #D6D6D6;
+}
+*/
+
+/* -- Where the 'Topic x' text is -- */
+#thetopics .section td.right, #thetopics  col.right {
+  width: 28px;
+}
+
+#thetopics  td.right, #thetopics  td.left {
+	background-color: #FFFFFF;
+	width: 20px;
+}
+
+/* -- Make the table work with auto width for the content column -- */
+#thetopics {
+  width: 100%;
+  table-layout: fixed;
+}   
+
+/* -- Size of the spacer row -- */
+.section .spacer {
+  height:0.5em;
+}
+
+/* Toggle all */
+#toggle-all td h4 {
+    display: inline;
+}
+
+#thetopics .section td.toggle-all  {
+  text-align: left;
+}
+
+#toggle-all td a {
+  padding: 7px 7px 7px 30px; /* The 30px allows the arrow to be on the left and the text next to it. */
+  text-align: left;
+  width: 35px;
+  text-decoration: none;
+}
+
+#toggle-all td a.on {
+  background: transparent url(arrow_down.png) no-repeat 0px 45%; 
+}
+
+#toggle-all td a.off {
+  background: transparent url(arrow_up.png) no-repeat 0px 45%; 
+}
+
+/* -- hide the children for IE7 and older -- */
+.collapsed_topic *
+{
+    display: none;
+}
+
+table.thnk-section {
+	width: 100%;
+}

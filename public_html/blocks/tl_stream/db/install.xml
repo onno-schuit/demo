@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="blocks/tl_stream/db" VERSION="20120202" COMMENT="XMLDB file for Moodle blocks/tl_stream"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="tl_stream" COMMENT="Default comment for tl_stream, please edit me" NEXT="tl_stream_kind">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="tl_stream_kind" COMMENT="tl_stream_kind table retrofitted from MySQL" PREVIOUS="tl_stream" NEXT="tl_stream_config">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="short_code"/>
+        <FIELD NAME="short_code" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="description"/>
+        <FIELD NAME="description" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="short_code"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="tl_stream_config" COMMENT="tl_stream_config table retrofitted from MySQL" PREVIOUS="tl_stream_kind" NEXT="tl_stream_cache">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="user_target"/>
+        <FIELD NAME="user_target" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="stream_kind_id"/>
+        <FIELD NAME="stream_kind_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="user_target" NEXT="visible"/>
+        <FIELD NAME="visible" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="stream_kind_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user_target" UNIQUE="false" FIELDS="user_target" NEXT="stream_kind_id"/>
+        <INDEX NAME="stream_kind_id" UNIQUE="false" FIELDS="stream_kind_id" PREVIOUS="user_target"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="tl_stream_cache" COMMENT="tl_stream_cache table retrofitted from MySQL" PREVIOUS="tl_stream_config" NEXT="tl_stream_gather">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="user_id"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="stream_kind_id"/>
+        <FIELD NAME="stream_kind_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="user_id" NEXT="src_uid"/>
+        <FIELD NAME="src_uid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="stream_kind_id" NEXT="title"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="src_uid" NEXT="contents"/>
+        <FIELD NAME="contents" TYPE="text" LENGTH="small" NOTNULL="true" SEQUENCE="false" PREVIOUS="title" NEXT="meta"/>
+        <FIELD NAME="meta" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="contents" NEXT="is_personal"/>
+        <FIELD NAME="is_personal" TYPE="int" LENGTH="1" NOTNULL="false" UNSIGNED="false" SEQUENCE="false" PREVIOUS="meta" NEXT="date_and_time"/>
+        <FIELD NAME="date_and_time" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="is_personal"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user_id" UNIQUE="false" FIELDS="user_id" NEXT="stream_kind_id"/>
+        <INDEX NAME="stream_kind_id" UNIQUE="false" FIELDS="stream_kind_id" PREVIOUS="user_id" NEXT="date_and_time"/>
+        <INDEX NAME="date_and_time" UNIQUE="false" FIELDS="date_and_time" PREVIOUS="stream_kind_id" NEXT="src_uid"/>
+        <INDEX NAME="src_uid" UNIQUE="false" FIELDS="src_uid" PREVIOUS="date_and_time" NEXT="is_personal"/>
+        <INDEX NAME="is_personal" UNIQUE="false" FIELDS="is_personal" PREVIOUS="src_uid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="tl_stream_gather" COMMENT="stream_gather table retrofitted from MySQL" PREVIOUS="tl_stream_cache" NEXT="tl_stream_dm">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="stream_kind_id"/>
+        <FIELD NAME="stream_kind_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="user_id"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="stream_kind_id" NEXT="last_update"/>
+        <FIELD NAME="last_update" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="user_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="stream_kind_id" UNIQUE="false" FIELDS="stream_kind_id" NEXT="user_id"/>
+        <INDEX NAME="user_id" UNIQUE="false" FIELDS="user_id" PREVIOUS="stream_kind_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="tl_stream_dm" COMMENT="Direct stream messages" PREVIOUS="tl_stream_gather">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="user_id"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="message"/>
+        <FIELD NAME="message" TYPE="text" LENGTH="small" NOTNULL="true" SEQUENCE="false" PREVIOUS="user_id" NEXT="timecreated"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="message"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user_id" UNIQUE="false" FIELDS="user_id" NEXT="timecreated"/>
+        <INDEX NAME="timecreated" UNIQUE="false" FIELDS="timecreated" PREVIOUS="user_id"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

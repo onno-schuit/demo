@@ -1,0 +1,21 @@
+<?php global $USER ?>
+<div id="toolbar">
+    <?= $this->ajax_form($html_attributes = array('action' => $this->get_url('action=create')),
+                         $js_validate = 'validate_item', 
+                         $js_callback = 'add_item',
+                         $target = '#todotwo_list',
+                         function() { ?>
+        <p>
+            <input id="todotwo_new_item" onfocus="restore_original()" type="text" name="item[title]" value="" />
+            <input type="submit" name="submit" value="Add"/>
+        </p>
+    <? }); ?>
+</div>
+<h3>
+    <span id="taskview" class="mtt-menu-button">
+        <span class="btnstr">My Tasks</span>
+        (<span id="todotwo_total"><?= count(item::find_all_by_user_id($USER->id, $items)) ?></span>)
+        <!-- <span class="arrdown"></span> -->
+    </span>
+</h3>
+<? include($this->get_partial_path('list')); ?>

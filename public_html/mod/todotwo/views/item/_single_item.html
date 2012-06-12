@@ -1,0 +1,48 @@
+<?php
+$checked = (empty($item->completed) || !$item->completed) ? "" : " checked='checked' ";
+$show_notes = '';
+$note = '';
+if (!empty($item->note) && trim($item->note) != '') {
+    $note = nl2br(htmlentities($item->note));
+    $show_notes = "<a href='#' onclick='this.blur();toggle_note_for_item_id({$item->id}, this); return false;'>&gt;</a>&nbsp;";
+}
+$owner_field = $this->get_owner_field($item);
+$priority = "";
+if (!empty($item->priority)) {
+    $priority_class = "todotwo_priority_value_{$item->priority}";
+    $priority = "<div class='todotwo_item_priority $priority_class'>{$item->priority}</div>";
+
+}
+$timedue = (!empty($item->timedue)) ? strftime('%e %b %Y', strtotime($item->timedue)) : '';
+echo "<tr id='item_{$item->id}' class='todotwo_item'>
+        <td class='owner'>$owner_field</td>
+        <td class='todotwo_item_completed'>
+            <input class='non-edit_checkbox' $checked type='checkbox' name='items[$item->id][completed]' value='1' />
+        </td>
+        <td class='todotwo_item_title'>
+            $priority
+             $show_notes <span>{$item->title}</span>
+            <div id='todotwo_item_note_{$item->id}' class='todotwo_item_note'><span>{$note}&nbsp;</span></div>
+        </td>
+        <td class='todotwo_item_timedue'>{$timedue}&nbsp;</td>
+        <td class='last'>
+            <div class='todotwo_item_actions'>
+                <img class='dropdown' src='{$CFG->wwwroot}/mod/todotwo/images/dropdown.jpg'>
+                <ul>
+                <li><a id='delete_link_{$item->id}' class='todotwo delete' href='{$this->get_url('action=delete&item_id='.$item->id)}' >delete</a></li>
+                <li><a id='edit_link_{$item->id}' class='todotwo edit' href='{$this->get_url('action=edit&item_id='.$item->id)}'>edit</a></li>
+                
+                </ul>
+                <script type='text/javascript'>
+                $('#delete_link_{$item->id}').click(function(e) { 
+                    if (!confirm('Delete activity')) {
+                        e.preventDefault();
+                        return false;
+                    }
+                    return true;
+                });
+                </script>
+            </div>
+        </td>
+      </tr>";
+?>

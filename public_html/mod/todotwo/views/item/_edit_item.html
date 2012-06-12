@@ -1,0 +1,65 @@
+<?php
+$url_save = $this->get_url('action=save&item_id='.$item->id);
+$url_delete = $this->get_url('action=delete&item_id='.$item->id);
+$owner_selectbox = $this->get_owner_selectbox($item);
+$priority_selectbox = $this->get_priority_selectbox($item);
+$this->ajax_form(
+    $html_attributes = array('action' => $this->get_url('action=save'), 'id' => "form_save_{$item->id}"),
+    $js_validate = 'validate_item', 
+    $js_callback = 'save_item',
+    $target = false,
+    function() use ($item, $url_save, $url_delete, $owner_selectbox, $priority_selectbox) {
+        global $CFG;
+        $checked = ($item->completed) ? " checked='checked' " : "";
+        echo "<script type='text/javascript'>
+                  $(document).ready(
+                      function() {
+                          $( '#item_timedue_{$item->id}' ).datepicker({ 
+                              showOn: 'both',
+                              buttonImage: '{$CFG->wwwroot}/mod/todotwo/images/calendar.png' 
+                          });
+                          $('#form_save_{$item->id}').dialog({
+                            'title': 'Edit activity', 
+                            'modal': true, 
+                            'dialogClass': 'source_dlg',
+                            'width': 400,
+                            'height': 300,
+                            'close': function(event, ui) {
+                                $('#form_save_{$item->id}').remove();
+                            }
+                          });
+                      }
+                  );
+              </script>
+              <div class='todotwo_editable_field'>
+                  <input type='hidden' name='item[id]' value='{$item->id}' />
+                  <label for='item_title_{$item->id}'>Title:</label>
+                  <input style='width:300px;' class='text_field' type='text' value='{$item->title}' name='item[title]' id='item_title_{$item->id}' />
+              </div>
+              <div class='todotwo_editable_field'>
+                  <label for='item_timedue_{$item->id}'>Due Date:</label>
+                  <input value='{$item->timedue}' id='item_timedue_{$item->id}' type='text' name='item[timedue]' />
+              </div>
+
+              {$owner_selectbox}
+              <div class='todotwo_editable_field'>
+                 <input type='hidden' name='item[completed]' value='0' />
+                 <label for='item_completed'>Completed:</label>
+                 <input $checked id='item_completed' type='checkbox' name='item[completed]' value='1' />
+              </div>
+
+              <div class='todotwo_editable_field'>
+                  <label for='item_priority'>Priority:</label>
+                  $priority_selectbox
+              </div>
+              <div class='todotwo_editable_field'>
+                  <label for='item_note_{$item->id}' style='position: relative; top: 2px;'>Note:</label>
+                  <textarea id='item_note_{$item->id}' name='item[note]'>{$item->note}</textarea>
+              </div>
+              <div class='todotwo_editable_field'>
+                  <a id='save_link_{$item->id}' class='save'
+                    onclick='return submit_item(this);' class='todotwo' href='#'>save</a> 
+              </div> ";
+    });
+/*                  <a id='delete_link_{$item->id}' class='todotwo delete' href='{$url_delete}'>delete</a> | */
+?>

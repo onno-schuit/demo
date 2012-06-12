@@ -1,0 +1,125 @@
+<?php
+global $DB, $OUTPUT, $PAGE, $USER, $COURSE;
+
+$menurole = optional_param('role', 'none', PARAM_RAW);
+?>
+
+
+
+<?php
+if ($menurole == 'expert' || $menurole == 'none') {
+?>
+
+<div class='tabtree'>
+    <ul class="tabrow0">
+        <li class="first onerow here selected"><a title="Experts" href='<?= "{$CFG->wwwroot}/mod/connector/index.php?controller=user&id=$id&role=expert" ?>'>Experts</a>
+        <div class="tabrow1 empty">&nbsp;</div>
+        </li>
+        <li><a title="All Participants" href='<?= "{$CFG->wwwroot}/mod/connector/index.php?controller=user&id=$id&role="  ?>'>All Participants</a></li>
+    </ul>
+</div>
+
+<?php } else { ?>
+
+<div class='tabtree'>
+    <ul class="tabrow0">
+        <li class="first"><a title="Experts" href='<?= "{$CFG->wwwroot}/mod/connector/index.php?controller=user&id=$id&role=expert" ?>'>Experts</a> 
+        </li>
+        <li class="onerow here selected"><a title="All Participants" href='<?= "{$CFG->wwwroot}/mod/connector/index.php?controller=user&id=$id&role="  ?>'>All Participants</a>
+        <div class="tabrow1 empty">&nbsp;</div>
+        </li>
+    </ul>
+</div>
+
+<?php } ?>
+
+<?php $this->form_open('index') ?>
+
+    <input value="<?php echo  $this->get_filtered($filters, 'role') ?>" type="hidden" name="role" id="role" />
+    <p id='connector_filter_header' style="clear:both;padding-top:25px;">Filter by:</p>
+    <!--
+    <div>
+        <label for="filters_username">Username</label>
+        <input value="<?php echo  $this->get_filtered($filters, 'username') ?>" type="text" name="filters[username]" id="filters_username" />
+    </div>
+    -->
+    <div id='connector_filter_last_name'>
+        <label for="filters_lastname"><?php echo  get_string('lastname') ?></label>
+        <input value="<?php echo  $this->get_filtered($filters, 'lastname') ?>" type="text" name="filters[lastname]" id="filters_lastname" />
+    </div>
+    <div id='connector_filter_same_group'>
+        <label for="filters_same_group"><?php echo  get_string('insamegroup', 'connector') ?></label>
+        <?php $checked = ($filters && isset($filters['same_group']) && $filters['same_group'] != '') ? "checked='checked'" : '' ?>
+        <input <?php echo  $checked ?> value="1" type="checkbox" name="filters[same_group]" id="filters_same_group" />
+    </div>
+
+    <div id='connector_filter_tags'>
+        <label for="filters_tags"><?php echo  get_string('tags', 'connector') ?></label>
+        <input value="<?php echo  $this->get_filtered($filters, 'tags') ?>" type="text" name="filters[tags]" id="filters_tags" />
+    </div>
+
+    <div id='connector_filter_submit'><input type="submit" value="<?php echo  get_string('applyfilters', 'connector') ?>" name="apply_filters" /></div>
+</form>
+<?php $this->form_open('index', array('role' =>  $this->get_filtered($filters, 'role'))) ?>
+    <div id='connector_removefilter_submit'>
+        <input  type="submit" value="<?php echo  get_string('removefilters', 'connector') ?>" name="remove_filters"/>
+    </div>
+</form>
+
+<div id="connector_status">
+    <a href="<?php echo  $CFG->wwwroot ?>/message/edit.php?id=<?php echo  $USER->id ?>&course=<?php echo  $COURSE->id ?>#generalsettings"><?php echo  get_string('changestatus', 'connector') ?></a>
+</div>
+<div id="connector_users">
+    <?php foreach($users as $user) { 
+        $moodle_user = (object) ((array) $user); 
+        $userpicture = new user_picture($moodle_user);
+        $userpicture->size = 100;
+        $src = $userpicture->get_url($PAGE, $OUTPUT);
+        $new_message_link = "";
+        if (isset($new_contacters[$user->id]) || 1) {
+            $message_count = array_key_exists($user->id,$new_contacters) ? $new_contacters[$user->id] : '';
+            $new_message_link = sprintf("<a class='new_message_link' href='{$CFG->wwwroot}/message/index.php?viewing=unread&user2={$user->id}'>%s</a>", $message_count);
+        }
+        
+        $connect = "";
+        if (!in_array($user->id, message_contact::collect('contactid', $contacts)) ) {
+            $connect = "<a class='connector_connect' href='{$CFG->wwwroot}/message/index.php?user2={$user->id}&viewing=contacts&addcontact={$user->id}&sesskey=" . sesskey() . "'>" . get_string('connect', 'connector') . "</a>";
+        }
+        $description = '';
+        if (trim($user->description) != '') $description = "<p class='connector_description'>{$user->description}</p>";
+        ?>
+        <div class="connector_popup" id="popup_for_userid_<?php echo  $user->id ?>">
+            <?php echo  $description ?>
+            <div class='connector_fullname'><strong></strong><?php echo  $user->firstname ?> <?php echo  $user->lastname ?></strong></strong></div>
+            <?php echo  $connect ?><br>
+            <a href="<?php echo  "{$CFG->wwwroot}/message/index.php?id={$user->id}" ?>"><?php echo  get_string('sendmessage', 'connector') ?></a>
+        </div>
+        <div class="connector_user" id="userid_<?php echo  $user->id ?>">
+            <div class="user_image_container">
+                <a href="<?php echo  $user->details_url() ?>">
+                    <img style="" src="<?php echo  $src ?>" alt="<?php echo  $user->firstname ?>"/>
+                </a>
+                <?php echo  $new_message_link ?>
+            </div>
+            <?php $OUTPUT->user_picture( $moodle_user, array('size'=>80)); ?>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#userid_<?php echo  $user->id ?>').qtip({
+                    content: $('#popup_for_userid_<?php echo  $user->id ?>'),
+                    position: {
+                        my: 'bottom center',
+                        at: 'center'
+                    },
+                    hide: {
+                        fixed: true
+                    }
+                });
+           });
+        </script>
+    <?php } ?>
+    <div style="clear:both;"></div>
+</div>
+
+
+

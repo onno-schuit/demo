@@ -1,0 +1,303 @@
+#thnk_sources ul {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+#thnk_sources li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-right: 20px;
+}
+
+
+#thnk_source_files {
+	border: 1px solid #FFF;
+    width: 670px;
+}
+
+#thnk_sources_header {
+	margin-top:15px;
+	margin-bottom: 15px;
+}
+
+#thnk_source_files .thnk_source_file_item td {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #EDF1F5;
+	border-style: solid;
+	border-width: 1px 0;
+	font-size: 13px;
+	list-style: none outside none;
+	position: relative;
+}
+
+#thnk_source_files .nowrap {
+    white-space: nowrap;
+}
+
+#thnk_source_files .thnk_source_file_item:hover td {
+	background-color: rgba(230, 245, 255, 0.3);
+	border-color: #C6D8E4;
+	position: relative;
+	z-index: 1;
+}
+
+#thnk_source_files .thnk_source_file_item .outerleft {
+	border-left: 1px solid white;
+}
+
+#thnk_source_files .thnk_source_file_item .outerright {
+	width: 50px;
+}
+
+#thnk_source_files .thnk_source_file_item:hover .outerleft {
+	border-left: 1px solid #2A5FA2;
+}
+
+#thnk_source_files .thnk_source_file_item:hover .outerright {
+	border-right: 1px solid #2A5FA2;
+}
+
+#thnk_source_files .dropdown {
+	display: none;
+	cursor: pointer;
+}
+
+#thnk_source_files .thnk_source_file_item:hover .dropdown {
+	display: inline;
+}
+
+#thnk_source_files .thnk_context:hover .thnk_contextmenu {
+	display: block;
+}
+
+#thnk_source_files td {
+	vertical-align: top;
+	border: 0 hidden;
+}
+
+#thnk_source_files th {
+	text-align: left;
+}
+
+#thnk_source_files .description {
+	margin: 0;
+	margin-top: 2px;
+	padding: 0 0 0 20px;
+}
+
+#thnk_sources .thnk_contextmenu {
+	list-style: none outside none;
+	margin: 0;
+	min-width: 160px;
+	padding: 4px 0;
+	z-index: 100;
+	position: absolute;
+	top: 12px;
+	left: 2px;
+	float: left;
+	display: none;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 0 #000000 inset;
+	border: 1px solid #d6d6d6;
+}
+
+#thnk_sources div.thnk_context {
+	position: absolute;
+	width: 50px;
+	height: 12px;
+	display: block;
+}
+
+#thnk_sources .thnk_sources_delete {
+	margin: 0;
+	width: 122px;
+	padding: 0;
+	border: none;
+}
+
+#thnk_sources .thnk_sources_delete input[type=submit] {
+	margin: 0;
+	display: block;
+	min-width: 160px;
+	background-color: transparent;
+	padding: 0px;
+	border: 0;
+	font-family: arial;
+	text-align: center;
+	height: 22px;
+	position: relative;
+	top: -3px;
+	cursor: pointer;
+	color: #005FA2;
+	background-image: none;
+}
+
+#thnk_sources_add_file_link {
+	background-image: url([[pix:mod_source|sprites]]);
+	background-repeat: no-repeat;
+	height: 16px;
+	background-position: left -9455px;
+	padding-left: 20px;
+	display: block;
+}
+
+#thnk_sources_add_folder_link {
+	background-image: url([[pix:mod_source|sprites]]);
+	background-repeat: no-repeat;
+	height: 16px;
+	background-position: left -2710px;
+	padding-left: 20px;
+	display: block;
+}
+
+#thnk_source_path li {
+	background-image: url([[pix:mod_source|collapsed]]);
+	background-repeat: no-repeat;
+	height: 16px;
+	margin: 15px 0px 0px 0px;
+	padding-left: 20px;
+}
+
+
+#thnk_sources a.thnk_sources_edit,a.thnk_sources_copy {
+	margin: 0;
+	display: block;
+	min-width: 160px;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	font-family: arial;
+	text-align: center;
+	height: 18px;
+}
+
+#thnk_sources .thnk_contextmenu li {
+	border-bottom: none;
+	min-width: 160px;
+	height: 18px;
+	padding: 5px 0;
+	margin: 0;
+	background-color: white;
+}
+
+#thnk_sources .thnk_contextmenu li:hover {
+	background-color: #D6d6d6;
+}
+
+/* link icons by file type */
+#thnk_source_files a[href $=".mp3"],#thnk_source_files a[href $=".MP3"],#thnk_source_files a.mp3,#thnk_source_files a[href
+	$=".wav"],#thnk_source_files a[href $=".WAV"],#thnk_source_files a.wav,#thnk_source_files a[href
+	$=".aif"],#thnk_source_files a[href $=".AIF"],#thnk_source_files a.aif,#thnk_source_files a[href
+	$=".aiff"],#thnk_source_files a[href $=".AIFF"],#thnk_source_files a.aiff,#thnk_source_files a[href
+	$=".ogg"],#thnk_source_files a[href $=".OGG"],#thnk_source_files a.ogg,#thnk_source_files a[href
+	$=".aac"],#thnk_source_files a[href $=".AAC"],#thnk_source_files a.aac,#thnk_source_files a[href
+	$=".wma"],#thnk_source_files a[href $=".WMA"],#thnk_source_files a.wma
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|audio]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".flv"],#thnk_source_files a[href $=".FLV"],#thnk_source_files a.flv,#thnk_source_files a[href
+	$=".mov"],#thnk_source_files a[href $=".MOV"],#thnk_source_files a.mov,#thnk_source_files a[href
+	$=".avi"],#thnk_source_files a[href $=".AVI"],#thnk_source_files a.avi,#thnk_source_files a[href
+	$=".ram"],#thnk_source_files a[href $=".RAM"],#thnk_source_files a.ram,#thnk_source_files a[href
+	$=".mpg"],#thnk_source_files a[href $=".MPG"],#thnk_source_files a.mpg,#thnk_source_files a[href
+	$=".mp4"],#thnk_source_files a[href $=".MP4"],#thnk_source_files a.mp4,#thnk_source_files a[href
+	$=".mpeg"],#thnk_source_files a[href $=".MPEG"],#thnk_source_files a.mpeg,#thnk_source_files a[href
+	$=".rm"],#thnk_source_files a[href $=".RM"],#thnk_source_files a.rm,#thnk_source_files a[href
+	$=".wmv"],#thnk_source_files a[href $=".WMV"],#thnk_source_files a.wmv,#thnk_source_files a[href
+	$=".xvid"],#thnk_source_files a[href $=".XVID"],#thnk_source_files a.xvid,#thnk_source_files a[href
+	$=".divx"],#thnk_source_files a[href $=".DIVX"],#thnk_source_files a.divx
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|video]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".doc"],#thnk_source_files a[href $=".DOC"],#thnk_source_files a.doc,#thnk_source_files a[href
+	$=".docx"],#thnk_source_files a[href $=".DOCX"],#thnk_source_files a.docx
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|docx]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".dot"],#thnk_source_files a[href $=".DOT"],#thnk_source_files a.dot,#thnk_source_files a[href
+	$=".dotx"],#thnk_source_files a[href $=".DOTX"],#thnk_source_files a.dotx
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|dotx]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".xls"],#thnk_source_files a[href $=".XLS"],#thnk_source_files a.xls,#thnk_source_files a[href
+	$=".ods"],#thnk_source_files a[href $=".ODS"],#thnk_source_files a.ods,#thnk_source_files a[href
+	$=".xlsx"],#thnk_source_files a[href $=".XLSX"],#thnk_source_files a.xlsx
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|xlsx]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".swf"],#thnk_source_files a[href $=".SWF"],#thnk_source_files a.swf
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|flash]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".jpg"],#thnk_source_files a[href $=".JPG"],#thnk_source_files a.jpg,#thnk_source_files a[href
+	$=".gif"],#thnk_source_files a[href $=".gif"],#thnk_source_files a.GIF,#thnk_source_files a[href
+	$=".png"],#thnk_source_files a[href $=".PNG"],#thnk_source_files a.png,#thnk_source_files a[href
+	$=".bmp"],#thnk_source_files a[href $=".BMP"],#thnk_source_files a.bmp,#thnk_source_files a[href
+	$=".tif"],#thnk_source_files a[href $=".TIF"],#thnk_source_files a.tif,#thnk_source_files a[href
+	$=".tiff"],#thnk_source_files a[href $=".TIFF"],#thnk_source_files a.tiff
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|image]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".ppt"],#thnk_source_files a[href $=".PPT"],#thnk_source_files a.ppt,#thnk_source_files a[href
+	$=".odp"],#thnk_source_files a[href $=".ODP"],#thnk_source_files a.odp,#thnk_source_files a[href
+	$=".pptx"],#thnk_source_files a[href $=".PPTX"],#thnk_source_files a.pptx
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|pptx]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".txt"],#thnk_source_files a[href $=".TXT"],#thnk_source_files a.txt,#thnk_source_files a[href
+	$=".odt"],#thnk_source_files a[href $=".ODT"],#thnk_source_files a.odt,#thnk_source_files a[href
+	$=".rtf"],#thnk_source_files a[href $=".RTF"],#thnk_source_files a.rtf,#thnk_source_files a[href
+	$=".readme"],#thnk_source_files a[href $=".README"],#thnk_source_files a.readme,#thnk_source_files a[href
+	$=".info"],#thnk_source_files a[href $=".INFO"],#thnk_source_files a.info,#thnk_source_files a[href
+	$=".xml"],#thnk_source_files a[href $=".XML"],#thnk_source_files a.xml
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|text]]) left center no-repeat;
+}
+
+#thnk_source_files a[href $=".zip"],#thnk_source_files a[href $=".ZIP"],#thnk_source_files a.zip,#thnk_source_files a[href
+	$=".rar"],#thnk_source_files a[href $=".RAR"],#thnk_source_files a.rar,#thnk_source_files a[href
+	$=".sit"],#thnk_source_files a[href $=".SIT"],#thnk_source_files a.sit,#thnk_source_files a[href
+	$=".sitx"],#thnk_source_files a[href $=".SITX"],#thnk_source_files a.sitx,#thnk_source_files a[href
+	$=".ace"],#thnk_source_files a[href $=".ACE"],#thnk_source_files a.ace,#thnk_source_files a[href
+	$=".7z"],#thnk_source_files a[href $=".7Z"] {
+	padding-left: 20px;
+	background: url([[pix:mod_source|zip]]) left center no-repeat;
+}
+
+#thnk_source_files a.folder {
+	padding-left: 20px;
+	background: url([[pix:mod_source|folder]]) left -2px no-repeat;
+}
+
+#thnk_source_files a[href $=".pdf"],#thnk_source_files a[href $=".PDF"],#thnk_source_files a.pdf
+	{
+	padding-left: 20px;
+	background: url([[pix:mod_source|pdf]]) left center no-repeat;
+}
+
+#thnk_sources_busy {
+    display: none;
+}

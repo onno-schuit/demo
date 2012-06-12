@@ -1,0 +1,70 @@
+Fonts geinstalleerd vanaf the thnk.org website
+
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-35leicht-webfont.eot
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-35leicht-webfont.woff
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-35leicht-webfont.ttf
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-45mager-webfont.eot
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-45mager-webfont.woff
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-45mager-webfont.ttf
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-55normal-webfont.eomc_embed_signupt
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-55normal-webfont.woff
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-55normal-webfont.ttf
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-65halbfett-webfont.eot
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-65halbfett-webfont.ttf
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-75fett-webfont.eot
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-75fett-webfont.woff
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-75fett-webfont.ttf
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-85schwer-webfont.eot
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-85schwer-webfont.woff
+wget http://www.thnk.org//wp-content/themes/thnk/static//fonts/NeuBauGrotesk/neubaugrotesk-85schwer-webfont.ttf
+
+Fonts.css toegevoegd
+Standaard font: Georgia
+
+Kenmerken thnk.org
+Content scrolled, menu niet
+Bij resizen wordt er een ander topmenu getoond.
+
+HTML5 voor ouder dan IE9
+    <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+Van alles een block maken:
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+
+Media queries voor ouder dan IE9
+<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+
+
+Linker menu verbergen:
+#page-content #region-main-box {
+    left: 210px;  <- uit
+}
+#page-content #region-main-box {
+    float: left;
+    left: 200px;  <- uit
+    position: relative;
+    width: 200%;
+}
+De content valt vervolgens over het menu
+
+
+#page-content {
+    clear: both;
+    float: left;
+    min-width: 900px; <- uitzetten zodat de pagina geen scrollbar krijgt
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+gebruik de manual van 
+http://webdesignerwall.com/tutorials/responsive-design-with-css3-media-queries
+
+Opnieuw de content regions gedefinieerd.

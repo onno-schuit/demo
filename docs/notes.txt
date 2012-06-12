@@ -1,0 +1,19 @@
+THNKLNK PROJECT NOTES
+=====================
+
+
+CONNECTOR
+
+Connector is the default Moodle messaging system with a different name and 
+another layout. There are also slight functional deviations.
+
+
+Default Messaging
+
+List of users: user/index.php?id=x
+User profile (includes "Send Message" link): user/view.php?id=x&course=y
+Compose message screen: message/index.php?id=x (where x = userid)
+Simple search screen: message/index.php?viewing=search
+Advanced search screen: message/index.php?usergroup=search&advanced=1
+
+

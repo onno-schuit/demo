@@ -1,0 +1,24 @@
+<div id='todotwo_container'>
+    <ul id='todotwo_list'>
+    <? 
+    foreach($items as $item) { 
+        if ($item->completed) continue;
+        include($this->get_partial_path('single_item'));
+    } ?>
+    </ul>
+    <ul id='todotwo_completed'>
+    <? 
+    foreach($items as $item) { 
+        if (! $item->completed) continue;
+        include($this->get_partial_path('single_item'));
+    } ?>
+    </ul>
+</div>
+<?= $this->ajax_link($container_id = 'todotwo_container', "a.delete", "delete_item"); ?>
+<?= $this->ajax_link($container_id = 'todotwo_container', "a.edit", "edit_item"); ?>
+<?= $this->ajax_link($container_id = 'todotwo_container',
+    "input.non-edit_checkbox",
+    "save_item",
+    $url = $this->get_url("action=toggle_completed&completed='+ ((\$(trigger).attr('checked')) ? 1 : 0) +'&field_name='+ \$(trigger).attr('name') +'"),
+    "click",
+    "true"); ?>

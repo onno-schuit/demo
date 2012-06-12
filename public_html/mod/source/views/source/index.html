@@ -1,0 +1,43 @@
+    <h2><?= get_string('title', 'source'); ?></h2>
+    <div id="thnk_sources_header">
+        <ul class="add">
+            <li><button class="thnkbutton"><a href="#" id="thnk_sources_add_file_link" onclick="return show_add_file();">Add file</a></button></li>
+            <li><button class="thnkbutton"><a href="#" id="thnk_sources_add_folder_link" onclick="return show_add_folder();">Add folder</a></button></li>
+        </ul>
+        <form action="<?php echo $CFG->wwwroot; ?>/mod/source/index.php" method="GET" id="thnk_sources_search">
+            <?php global $cm;?>
+            <input type="hidden" name="id" value="<?php echo $cm->id; ?>" />
+            <input type="hidden" name="controller" value="source" />
+            <input type="hidden" name="folder_id" value="<?php echo isset($_REQUEST['folder_id']) ? (int)$_REQUEST['folder_id'] : 0; ?>" />
+            Search: <input type="text" id="thnk_source_search" name="thnk_source_search" value="<?php echo source_helper::get_search_text(); ?>" />
+            <select id="thnk_source_type" name="thnk_source_type">
+                <option value="">-- select file type</option>
+                <?php foreach(source_helper::get_filetype_filter() as $description => $type): ?>
+                <option value="<?php echo $description; ?>"<?php if(isset($_REQUEST['thnk_source_type']) && $_REQUEST['thnk_source_type']==$description):?> selected="selected"<?php endif; ?>><?php echo $description; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </form>
+        <ul id="thnk_source_path">
+            <li><a href="<?php echo $controller->get_url(''); ?>">Root folder</a></li>
+            <?php foreach(source_helper::getCrumbs() as $crumb): ?>
+            <li><a href="<?php echo $crumb['url']; ?>"><?php echo $crumb['path']; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php include(dirname(__FILE__) . '/index_files.html'); ?>
+
+    <form id="thnk_sources_folder_add" action="<?php echo $controller->get_url('action=add&controller=folder'); ?>" method="post" style="display: none;"> 
+    <p>Folder name: <input type="text" name="folder_name" /></p>
+    <input type="hidden" name="parent_id" value="<?php if(isset($_REQUEST['folder_id'])) {echo $_REQUEST['folder_id'];} else {echo 0;} ?>" />
+    <input type="submit" value="Add" />
+    </form>
+    <form id="thnk_sources_file_add" action="<?php echo $controller->get_url('action=add&controller=file'); ?>" method="post" enctype="multipart/form-data" style="display: none;">
+    <div id="thnk_sources_file_add_files">
+    <p>File: <input type="file" name="newfile1" onchange="file_change();" /></p>
+    <p>Description: <input type="text" name="description1" class="ajax" /></p>
+    </div>
+    <input type="hidden" name="parent_id" class="ajax" value="<?php if(isset($_REQUEST['folder_id'])) {echo $_REQUEST['folder_id'];} else {echo 0;} ?>" />
+    <input type="submit" value="Add" id="thnk_sources_button_add"/>
+    <img src="<?php echo $CFG->wwwroot; ?>/mod/source/images/busy.gif" id="thnk_sources_busy" />
+    </form>
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/activitylist/db" VERSION="20120216" COMMENT="XMLDB file for Moodle mod/activitylist"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="activitylist" COMMENT="Instance table for activitylists" NEXT="activitylist_lists">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course activitylist activity belongs to" PREVIOUS="id" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances" PREVIOUS="course" NEXT="intro"/>
+        <FIELD NAME="intro" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="General introduction of the activitylist" PREVIOUS="name" NEXT="introformat"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)" PREVIOUS="intro" NEXT="timecreated"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="introformat" NEXT="timemodified"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="activitylist_lists" COMMENT="activitylist_lists table retrofitted from MySQL" PREVIOUS="activitylist" NEXT="activitylist_tag2task">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="instanceid"/>
+        <FIELD NAME="instanceid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="id" NEXT="uuid"/>
+        <FIELD NAME="uuid" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="instanceid" NEXT="ow"/>
+        <FIELD NAME="ow" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="uuid" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" PREVIOUS="ow" NEXT="d_created"/>
+        <FIELD NAME="d_created" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="name" NEXT="d_edited"/>
+        <FIELD NAME="d_edited" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="d_created" NEXT="sorting"/>
+        <FIELD NAME="sorting" TYPE="int" LENGTH="3" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="d_edited" NEXT="published"/>
+        <FIELD NAME="published" TYPE="int" LENGTH="3" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="sorting" NEXT="taskview"/>
+        <FIELD NAME="taskview" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="published"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="activitylist_tag2task" COMMENT="activitylist_tag2task table retrofitted from MySQL" PREVIOUS="activitylist_lists" NEXT="activitylist_tags">
+      <FIELDS>
+        <FIELD NAME="tag_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" NEXT="task_id"/>
+        <FIELD NAME="task_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="tag_id" NEXT="list_id"/>
+        <FIELD NAME="list_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="task_id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="tag_id, task_id, list_id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="tag_id" UNIQUE="false" FIELDS="tag_id" NEXT="task_id"/>
+        <INDEX NAME="task_id" UNIQUE="false" FIELDS="task_id" PREVIOUS="tag_id" NEXT="list_id"/>
+        <INDEX NAME="list_id" UNIQUE="false" FIELDS="list_id" PREVIOUS="task_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="activitylist_tags" COMMENT="activitylist_tags table retrofitted from MySQL" PREVIOUS="activitylist_tag2task" NEXT="activitylist_todolist">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" PREVIOUS="id"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="name" TYPE="unique" FIELDS="name" NEXT="id"/>
+        <KEY NAME="id" TYPE="primary" FIELDS="id" PREVIOUS="name"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="activitylist_todolist" COMMENT="activitylist_todolist table retrofitted from MySQL" PREVIOUS="activitylist_tags">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="uuid"/>
+        <FIELD NAME="uuid" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="list_id"/>
+        <FIELD NAME="list_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="uuid" NEXT="userid"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="list_id" NEXT="groupid"/>
+        <FIELD NAME="groupid" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="userid" NEXT="d_created"/>
+        <FIELD NAME="d_created" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="groupid" NEXT="d_completed"/>
+        <FIELD NAME="d_completed" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="d_created" NEXT="d_edited"/>
+        <FIELD NAME="d_edited" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="d_completed" NEXT="compl"/>
+        <FIELD NAME="compl" TYPE="int" LENGTH="3" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="d_edited" NEXT="title"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="250" NOTNULL="true" SEQUENCE="false" PREVIOUS="compl" NEXT="note"/>
+        <FIELD NAME="note" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="title" NEXT="prio"/>
+        <FIELD NAME="prio" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="note" NEXT="ow"/>
+        <FIELD NAME="ow" TYPE="int" LENGTH="11" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="prio" NEXT="tags"/>
+        <FIELD NAME="tags" TYPE="char" LENGTH="600" NOTNULL="true" SEQUENCE="false" PREVIOUS="ow" NEXT="tags_ids"/>
+        <FIELD NAME="tags_ids" TYPE="char" LENGTH="250" NOTNULL="true" SEQUENCE="false" PREVIOUS="tags" NEXT="duedate"/>
+        <FIELD NAME="duedate" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" PREVIOUS="tags_ids"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="id" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="list_id" UNIQUE="false" FIELDS="list_id" NEXT="groupid"/>
+        <INDEX NAME="groupid" UNIQUE="false" FIELDS="groupid" PREVIOUS="list_id" NEXT="userid"/>
+        <INDEX NAME="userid" UNIQUE="false" FIELDS="userid" PREVIOUS="groupid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

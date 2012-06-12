@@ -1,0 +1,1335 @@
+@CHARSET "UTF-8";
+
+body {
+	background: url([[pix:theme|body-bg]]) repeat-x fixed 0 0 #FFF;
+}
+
+#thnk-region-main .region-content .thnk-course-groupblock {
+	
+}
+
+.mceContentBody {
+	background: none;
+}
+
+.mform fieldset {
+	border: none;
+}
+
+#pagewrapper {
+	width: 1035px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+a:link,a:visited {
+	color: #005FA2;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*Frontpage */
+#thnk-pre-blocks {
+	float: left;
+	min-height: 700px;
+	width: 210px;
+	padding: 5px;
+}
+
+#thnk-pre-blocks #thnk-logo {
+	background: url([[pix:theme|thnk-logo]]) top left no-repeat #fff;
+	width: 210px;
+	height: 100px;
+	display: block;
+	float: left;
+}
+
+#thnk-front {
+	float: left;
+	margin-left: 20px;
+	width: 720px;
+	padding: 10px;
+	min-height: 700px;
+}
+
+#page-site-index #thnk-topspace,#page-blocks-tl_search-search #thnk-topspace
+	{
+	height: 100px;
+}
+
+.thnk-front-search .block_tl_search {
+	display: none;
+}
+
+#page-site-index .block_tl_search,.pagelayout-frontpage .block_tl_search
+	{
+	margin-top: 20px;
+	text-align: center;
+}
+
+#page-site-index .block_tl_search .title h2 {
+	display: none;
+}
+
+/*
+.block_tl_search input[type="text"] {
+	box-shadow: 0 0 5px #CCCCCC;
+	color: #000;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	font-variant: normal;
+	padding: 9px;
+	text-transform: none;
+	width: 176px;
+	background: none repeat scroll 0 0 transparent;
+	border: medium none;
+	float: left;
+}
+
+.ie .block_tl_search input[type="text"] {
+	border: 1px solid #d1d1d1;
+}
+
+.block_tl_search input[type="submit"] {
+	box-shadow: 0 0 5px #CCCCCC;
+	width: 40px;
+	height: 40px;
+	background: url([[pix:theme|search]]) top left no-repeat #fff;
+	font-size: 0px;
+	border: 0px;
+	float: left;
+}
+
+.ie .block_tl_search input[type="submit"] {
+	border: 1px solid #d1d1d1;
+	height: 41px;
+}
+*/
+#thnk-home-modules {
+	display: none;
+}
+
+#thnk-home-modules.showadmin {
+	display: block;
+}
+
+#page-blocks-tl_search-search #thnk-home-modules {
+	display: block;
+}
+
+#page-site-index .thnk-front-content {
+	display: none;
+}
+
+#page-site-index .showtopics {
+	display: block;
+}
+
+#page-site-index .hideadmin {
+	display: none;
+}
+
+/*Course*/
+#thnk-course-content {
+	width: 710px;
+	min-height: 700px;
+	float: left;
+}
+
+#thnk-course-content.thnk-nostream {
+	width: 940px;
+	min-height: 700px;
+	float: left;
+	background-color: #FFF;
+	padding: 20px;
+	border: 1px solid #DDDDDD;
+}
+
+#thnk-region-thnk-stream {
+	float: left;
+	margin-left: 222px;
+	position: relative;
+	width: 260px;
+	min-height: 700px;
+}
+
+#thnk-region-thnk-stream .block .header {
+	padding: 0px;
+	height: 0px;
+	font-size: 0px;
+}
+
+.editing #thnk-region-thnk-stream .block .header {
+	padding: 0px;
+	height: 15px;
+	font-size: 15px;
+	padding: 4px 5px 5px;
+}
+
+#course-header {
+	width: 980px;
+	display: block;
+}
+
+#course-top {
+	width: 980px;
+	display: block;
+	height: 100px;
+	background-color: #fff;
+}
+
+#course-login-info {
+	float: right;
+	padding: 10px;
+}
+
+#course-post-wrapper {
+	float: right;
+	left: 0;
+	position: relative;
+	width: 260px;
+}
+
+#thnk-region-post {
+	background-color: #FFFFFF;
+	width: 210px;
+	float: left;
+	position: absolute;
+	min-height: 700px;
+}
+
+.sectionheadcontent {
+	font-family: 'NeubauGrotesk55Normal';
+	font-size: 28px;
+	height: 44px;
+	text-align: left;
+	margin-left: 10px;
+	width: 100%;
+	position: relative;
+	width: 100%;
+	padding-top: 7px;
+}
+
+.sectionheadcontent a {
+	background-image: url([[pix:theme|section-open]]);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	height: 34px;
+	padding-left: 60px;
+	padding-bottom: 4px;
+	padding-top: 6px;
+}
+
+#thnkcoursecontrols {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#thnkcoursecontrols a {
+	
+}
+
+.thnksectionwrapper {
+	background-color: #fff;
+}
+
+.thnk-course-groupblock {
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+
+.separator {
+	height: 10px;
+}
+
+#tl_homepage_stream_handle {
+	float: left;
+	margin-left: 4px;
+	margin-top: 30px;
+	width: 30px;
+	min-height: 700px;
+	margin-top: 30px;
+	width: 36px;
+}
+
+#tl_stream_wrapper {
+	background-color: #D6D6D6;
+}
+
+#tl_homepage_stream {
+	background-color: #FFFFFF;
+	display: block;
+	float: left;
+	padding-left: 10px;
+	padding-top: 30px;
+	width: 206px;
+	min-height: 700px;
+}
+
+.block_tl_stream {
+	margin-bottom: 0px;
+}
+
+.block_tl_stream .content {
+	padding: 0px;
+}
+
+.thnk-navbutton {
+	margin-left: 0px;
+}
+
+.thnk-navbutton .singlebutton {
+	margin: 0px 0px 10px 0px;
+}
+
+.pagelayout-incourse #thnk-region-main .region-content,.pagelayout-course #thnk-region-main .region-content
+	{
+	background: none;
+	padding: 0px;
+}
+
+.pagelayout-report .thnk-navbutton .singlebutton input,.pagelayout-incourse .thnk-navbutton .singlebutton input,.pagelayout-course .thnk-navbutton .singlebutton input
+	{
+	display: block;
+	height: 40px;
+	width: 260px;
+}
+
+/*Blocks*/
+.block .header {
+	
+}
+
+/*Footer*/
+#thnk-footer {
+	background-color: #D6D6D6;
+	margin: 20px auto;
+	position: relative;
+	width: 980px;
+}
+
+#thnk-sitemap-column {
+	float: left;
+	width: 150px;
+	padding: 20px;
+}
+
+#thnk-sitemap-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	width: 700px;
+}
+
+#thnk-clear {
+	clear: both;
+}
+
+/*Page layout*/
+#thnk-page {
+	width: 980px;
+	position: relative;
+	overflow: hidden;
+	float: left;
+}
+
+#thnk-post-blocks {
+	width: 210px;
+	background-color: #fff;
+	float: left;
+}
+
+#thnk-pre-main {
+	width: 980px;
+	float: left;
+}
+
+#thnk-header {
+	width: 980px;
+}
+
+#thnk-main-wrap {
+	float: left;
+	width: 530px;
+}
+
+#thnk-region-pre {
+	background-color: #FFFFFF;
+	width: 210px;
+	float: right;
+	left: 0px;
+	position: relative;
+}
+
+#thnk-region-thnk-admin {
+	background-color: #FFFFFF;
+	width: 210px;
+	float: left;
+	left: 0px;
+	position: relative;
+}
+
+/*Dropdown menu*/ /*COLORS*/
+#thnk-pre-blocks {
+	background-color: #fff;
+}
+
+#thnk-front {
+	background-color: #fff;
+}
+
+/*Thnk menu*/
+#thnk-page #thnk-admin {
+	width: 210px;
+}
+
+#thnk-admin .block.hidden .content {
+	display: block;
+}
+
+#thnk-page #thnk-admin {
+	background-color: #FFFFFF;
+	border: 2px solid #87CAFA;
+	float: left;
+	margin-left: 0px;
+	overflow: hidden;
+	position: absolute;
+	width: 206px;
+	margin-top: 0px;
+	z-index: 999;
+}
+
+#page-site-index #thnk-page #thnk-admin {
+	top: 130px;
+}
+
+#thnk-page #thnk-admin.nopost {
+	left: 0px;
+}
+
+.block_thnkhelp {
+	display: none;
+}
+
+.block_thnkhelp ul {
+	margin-left: 5px;
+}
+
+.block_thnkhelp li {
+	background: url([[pix:theme|navigationitem]]) top left no-repeat #fff;
+	padding-left: 15px;
+	list-style: none outside none;
+	margin: 0;
+	list-style: none outside none;
+	margin: 0;
+	padding-left: 17px;
+}
+
+#thnk-page #thnk-admin .block .header .block_action {
+	display: none;
+}
+
+#thnk-admin {
+	display: none;
+}
+
+#page-site-index #thnk-admin.show-thnk-admin {
+	display: block;
+}
+
+#page-site-index #thnk-admin .block {
+	border-right: 1px solid #666666;
+	float: left;
+	margin-right: 5px;
+	padding-right: 5px;
+	width: 230px;
+}
+
+#page-site-index #thnk-admin .region-content .block .header h2 {
+	display: block;
+}
+
+#page-site-index #thnk-admin .region-content .block .header {
+	background: none repeat scroll 0 0 #87CAFA;
+	border-top: medium none;
+	height: 45px;
+	padding: 0 5px 5px;
+	width: 220px;
+}
+
+#page-site-index #thnk-admin .region-content .block .commands {
+	background-color: transparent;
+}
+
+#thnk-admin .region-content {
+	padding-top: 0px;
+}
+
+#thnk-admin .region-content .block .header h2 {
+	display: none;
+}
+
+#thnk-admin .region-content .block .header h2 {
+	display: none;
+}
+
+#thnk-admin .region-content .block .commands {
+	background-color: #fff;
+}
+
+#thnk-helpmenu {
+	float: left;
+	position: relative;
+	width: 45px;
+	margin-right: 10px;
+	margin-top: 136px;
+}
+
+#thnk-buttonhelp {
+	background-color: #D6D6D6;
+	background-position: 0 -4px;
+	background-repeat: no-repeat;
+	display: none;
+	height: 99px;
+	text-align: center;
+}
+
+#thnk-buttonnavigation {
+	background-color: #D6D6D6;
+	background-position: 0 -4px;
+	background-repeat: no-repeat;
+	display: block;
+	height: 122px;
+	text-align: center;
+}
+
+#thnk-buttonsettings {
+	background-color: #D6D6D6;
+	background-position: 0 -4px;
+	background-repeat: no-repeat;
+	height: 103px;
+	text-align: center;
+}
+
+#thnk-hoverhelp {
+	padding-left: 9px;
+	padding-top: 31px;
+	width: 36px;
+	height: 68px;
+}
+
+#thnk-hovernav {
+	padding-left: 9px;
+	padding-top: 13px;
+	width: 36px;
+	height: 109px;
+}
+
+#thnk-hoverset {
+	padding-left: 9px;
+	padding-top: 15px;
+	width: 36px;
+	height: 90px;
+}
+
+#thnk-hoverhelp:hover {
+	background-color: #87CAFA;
+}
+
+#thnk-hovernav:hover {
+	background-color: #87CAFA;
+}
+
+#thnk-hoverset:hover {
+	background-color: #87CAFA;
+}
+
+.thnk-helpmenubutton {
+	float: left;
+	display: block;
+	margin-bottom: 3px;
+}
+
+#thnkhelpbuttontext {
+	display: none;
+	color: #000;
+	font-size: 1.5em;
+}
+
+#thnknavbuttontext {
+	display: none;
+	color: #000;
+	font-size: 1.5em;
+}
+
+#thnksettingbuttontext {
+	display: none;
+	color: #000;
+	font-size: 1.5em;
+}
+
+/* FORUM DESIGN */
+.forumpost .topic {
+	background: none repeat scroll 0 0 #fff;
+	border-bottom: 1px solid #fff;
+	padding: 5px 4px 4px;
+}
+
+.forumpost .topic .subject {
+	color: #005FA2;
+	font-family: 'NeubauGrotesk75Fett';
+	line-height: 1.5;
+	font-size: 16px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.forumpost .row .topic {
+	background: url([[pix:theme|sub-menu-item]]) no-repeat scroll 0 -679px
+		transparent;
+	margin-bottom: 0;
+	padding-left: 15px;
+}
+
+.forumpost .content {
+	border: none;
+	background-color: #FFFFFF;
+}
+
+.forumpost .row .topic,.forumpost .row .content-mask,.forumpost .row .options
+	{
+	margin-left: 56px;
+	padding-top: 0;
+}
+
+.firstpost {
+	border-bottom: 1px solid #EDEDED;
+}
+
+.forumaddnew {
+	text-align: left;
+}
+
+#intro.generalbox {
+	margin-top: 10px;
+	padding: 5px;
+}
+
+#section-3 #intro {
+	display: none;
+}
+
+#section-3 .singleselect {
+	margin-left: 4px;
+	text-align: left;
+}
+
+#section-3  input[type="text"],#section-3  input[type="password"],textarea
+	{
+	border: 1px solid #D6D6D6;
+}
+
+.forumpost .content .posting {
+	background-color: #FFFFFF;
+	max-width: 100%;
+	overflow: auto;
+}
+
+#page-mod-forum-discuss .discussioncontrol.movediscussion {
+	clear: both;
+	float: left;
+	padding-right: 10px;
+	position: relative;
+	text-align: right;
+	width: auto;
+}
+
+#page-mod-forum-discuss .discussioncontrol.displaymode {
+	clear: both;
+	float: left;
+	padding-right: 10px;
+	position: relative;
+	text-align: right;
+	width: auto;
+}
+
+/*LinkedIn Block*/
+#thnk-region-pre .block_linkedin {
+	margin-left: 10px;
+	padding-top: 15px;
+	padding-left: 0px;
+}
+
+#linkedincontainer {
+	background: none;
+	border-radius: 5px 5px 5px 5px;
+	display: block;
+	font-size: 13px;
+	padding: 5px;
+	width: 238px;
+}
+
+#linkedinpic {
+	border: 2px solid #E5E5E5;
+	float: right;
+	padding: 0;
+	position: relative;
+	width: 40px;
+	height: 40px;
+}
+
+#linkedinpic img {
+	border: 0 none;
+	padding: 0;
+	height: 100%;
+	max-width: 100%;
+}
+
+#linkedininfo {
+	float: left;
+	margin: 4px 0 0;
+	width: 70%;
+}
+
+#linkedinname {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 2px 0;
+	color: #0079AB;
+}
+
+.linkedintitle,.linkedinlocation,.linkedinlogout {
+	color: #666666;
+	display: block;
+	margin-top: 2px;
+}
+
+.linkedinlogin {
+	font-size: 1.3em;
+}
+
+.linkedinlogin a:link {
+	color: #005FA2;
+}
+
+.locallogin {
+	font-size: 0.8em;
+}
+
+#linkedinwrapper {
+	background: none repeat scroll 0 0 #FFFFFF;
+	font-style: normal;
+	padding: 10px;
+	border-bottom: 1px solid #E3E3E3;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+.block_linkedin {
+	margin-bottom: 0px;
+	border-left: 1px solid #A8A8A8;
+	border-right: 1px solid #A8A8A8;
+}
+
+.block_linkedin div.content {
+	padding: 0px;
+	text-align: center;
+	margin-left: 120px;
+}
+
+#linkedinusercontainer {
+	background: none;
+	border-radius: 5px 5px 5px 5px;
+	display: block;
+	font-size: 13px;
+	padding: 5px;
+	width: 238px;
+}
+
+#linkedinuserpic {
+	border: 2px solid #E5E5E5;
+	float: right;
+	padding: 0;
+	position: relative;
+	width: 40px;
+	height: 40px;
+}
+
+#linkedinuserpic img {
+	border: 0 none;
+	padding: 0;
+	height: 100%;
+	max-width: 100%;
+}
+
+#linkedinuserinfo {
+	float: left;
+	margin: 4px 0 0;
+	width: 70%;
+}
+
+#linkedinusername {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 2px 0;
+	color: #0079AB;
+}
+
+.linkedinusertitle,.linkedinuserlocation,.linkedinuserlogout {
+	color: #666666;
+	display: block;
+	margin-top: 2px;
+}
+
+.linkedinuserlogin {
+	font-size: 1.3em;
+}
+
+.linkedinuserlogin a:link {
+	color: #005FA2;
+}
+
+.locallogin {
+	font-size: 0.8em;
+}
+
+#linkedinuserwrapper {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #d6d6d6;
+	box-shadow: 1px 1px 5px #F2F2F2;
+	font-style: normal;
+	padding: 10px;
+}
+
+.block_linkedinuser {
+	margin-bottom: 0px;
+}
+
+.block_linkedinuser div.content {
+	padding: 0px;
+}
+
+/*Login page*/
+#modal .modal_header {
+	background: url([[pix:theme|modal_header]]) repeat-x scroll 0 0 #6BA718;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+#modal .modal_message {
+	background: url("../images/modal/modal_message.gif") repeat-x scroll 0 0
+		#FBFBFB;
+	border-left: 1px solid #A8A8A8;
+	border-right: 1px solid #A8A8A8;
+	border-style: none solid;
+	border-width: medium 1px;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 21px;
+	text-align: center;
+	border-bottom: 1px solid #A8A8A8;
+}
+
+#modal {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	box-shadow: 0 4px 10px #CCCCCC;
+	color: #666666;
+	width: 500px;
+}
+
+#modal .modal_header .signin {
+	color: #FFFFFF;
+	font-size: 1.3em;
+	font-weight: bold;
+	text-shadow: 0 1px 1px #005FA2;
+}
+
+#page-login-index .login-region-content {
+	background-color: #FFF;
+	width: 680px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 50px;
+	padding-left: 40px;
+	padding-top: 40px;
+}
+
+#page-login-index #thnk-login-blocks {
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+}
+
+#page-login-index #thnk-login-main {
+	width: 230px;
+	float: left;
+	display: none;
+}
+
+#page-login-index .loginbox {
+	border-left: 1px solid #A8A8A8;
+	border-right: 1px solid #A8A8A8;
+}
+
+#page-login-index .loginbox h2 {
+	margin: 0px;
+	padding: 0px;
+	display: none;
+}
+
+.loginbox .loginpanel .desc {
+	margin: 0px;
+	padding: 0;
+	display: none;
+}
+
+.loginbox .guestsub {
+	border-top: none;
+	margin: 0px;
+}
+
+#page-login-index .loginbox .subcontent {
+	text-align: left;
+}
+
+#page-login-index .loginbox .loginform {
+	margin: 0px;
+	width: 400px;
+}
+
+.loginbox .loginform .form-label {
+	float: left;
+	margin: 0 auto;
+	text-align: left;
+	width: 112px;
+}
+
+#thnk-login-page {
+	background-color: #FFF;
+	min-height: 700px;
+}
+
+.loginbox.twocolumns {
+	margin: 0;
+	width: 498px;
+}
+
+.loginbox.twocolumns .loginpanel {
+	float: left;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	width: 100%;
+	border-right-width: 0;
+	padding-right: 0;
+	border-bottom: 1px solid #A8A8A8;
+}
+
+.loginbox.twocolumns .signuppanel {
+	display: none;
+}
+
+.block_linkedin  div.title h2 {
+	display: none;
+}
+
+/*WIKI Styling*/ /*
+#ouwiki_searchquery {
+	box-shadow: 0 0 5px #CCCCCC;
+	color: #B7B7B7;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	font-variant: normal;
+	padding: 9px;
+	text-transform: none;
+	width: 176px;
+	background: none repeat scroll 0 0 transparent;
+	border: medium none;
+	float: left;
+	height: 21px;
+}
+*/
+.path-mod-ouwiki .thnk-navbutton {
+	margin-left: 50px;
+	margin-top: 15px;
+}
+
+.path-mod-ouwiki #thnk-course-content {
+	float: left;
+	min-height: 700px;
+	background-color: #FFF;
+}
+
+/*
+#ousearch_searchbutton {
+	box-shadow: 0 0 5px #CCCCCC;
+	width: 40px;
+	height: 40px;
+	background: url([[pix:theme|search]]) top left no-repeat #fff;
+	font-size: 0px;
+	border: 0px;
+	float: left;
+}
+*/
+#ouwiki_belowtabs {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 960px;
+}
+
+.path-mod-ouwiki div.thnk-navbutton form div label {
+	display: none;
+}
+
+.path-mod-ouwiki .helplink {
+	display: none;
+}
+
+.tabtree .tabrow0 li.here .empty {
+	bottom: -6px;
+	display: block;
+	height: 1px;
+	margin-right: auto;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+}
+
+.ie .tabtree .tabrow0 li.here .empty {
+	bottom: -4px;
+}
+
+#thnkwiki {
+	border-top: 1px solid #000;
+	color: #005FA2;
+	font-family: 'NeubauGrotesk75Fett';
+}
+
+#thnkwiki .wikirow {
+	height: 90px;
+	clear: both;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 20px solid #000;
+	border-top: none;
+}
+
+#thnkwiki .wikirow:hover {
+	background-color: #DDDDDD;
+	border-left: 20px solid #E02019;
+}
+
+#thnkwiki .wikirow:hover .topic {
+	background-color: #000;
+	color: #FFF;
+}
+
+#thnkwiki .wikicell {
+	width: 15%;
+	float: left;
+	height: 50px;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-transform: uppercase;
+	position: relative;
+	border-left: 1px solid #000;
+}
+
+#thnkwiki .topic {
+	width: 15%;
+	float: left;
+	padding-bottom: 10px;
+	text-transform: uppercase;
+	color: #E02019;
+	font-size: 1.2em;
+	background-color: #DDDDDD;
+}
+
+#thnkwiki .ouw_wikilink {
+	background: url([[pix:theme|sub-menu-item]]) no-repeat scroll 0 -683px
+		transparent;
+	text-align: center;
+	bottom: 10px;
+	padding-left: 11px;
+}
+
+.ouw_topheading {
+	background: none repeat scroll 0 0 #DDDDDD;
+	border-top: 1px solid #888888;
+	margin-top: 0px;
+	padding: 0px;
+}
+
+.ouw_topheading h1 {
+	font-size: 1.4em;
+	margin-bottom: 0px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#page-mod-ouwiki-view .ouw_recentchanges {
+	display: none;
+}
+
+#page-mod-ouwiki-view .ouw_byheading {
+	display: none;
+}
+
+#page-mod-ouwiki-view #ouwiki_addnew {
+	display: none;
+}
+
+/*Connector*/
+#thnk-region-main .region-content {
+	background: #FFF;
+}
+
+.path-mod-connector .thnk-course-groupblock {
+	display: none;
+}
+
+.path-mod-connector #connector_filter_last_name,.path-mod-connector #connector_filter_same_group,.path-mod-connector #connector_filter_tags,.path-mod-connector #connector_filter_submit
+	{
+	float: left;
+	margin-left: 15px;
+}
+
+/*Editor*/
+div.form-textarea {
+	background-color: #FFFFFF;
+}
+
+/*BLOG*/
+#page-blog .region-content,.path-blog .region-content {
+	background-color: #FFFFFF;
+}
+
+#page-blog .block_tl_search {
+	display: none;
+}
+
+#page-blog #thnk-region-main .block,.path-blog #thnk-region-main .block
+	{
+	float: left;
+	width: 300px;
+}
+
+#page-blog h2.main {
+	font-family: 'NeubauGrotesk75Fett';
+	font-size: 25px;
+	height: 50px;
+	padding-top: 10px;
+	position: relative;
+}
+
+.region-content img {
+	max-width: 630px;
+}
+
+/*Overig*/
+.block .title h2 {
+	font-family: 'NeubauGrotesk75Fett';
+	font-size: 25px;
+	height: 50px;
+	padding-top: 10px;
+	position: relative;
+}
+
+.block_tl_stream .title h2 {
+	display: none;
+}
+
+input[type="text"],input[type="password"],textarea,input[type="file"] {
+	border: 1px solid #929292;
+	font-size: 1.1em;
+	padding: 3px;
+	width: auto;
+}
+
+.loginbox .loginform .form-input #username,.loginbox .loginform .form-input #password
+	{
+	font-family: Arial, sans-serif;
+	border: 1px solid #929292;
+	font-size: 1.1em;
+	padding: 3px;
+	width: 200px;
+}
+
+.loginbox .loginform .form-input #loginbtn {
+	margin-left: 112px;
+}
+
+input[type="text"]:focus,input[type="password"]:focus,textarea:focus,input[type="file"]:focus
+	{
+	border: 1px solid #929292;
+	padding: 3px;
+	width: auto;
+	background-color: rgba(230, 245, 255, 0.3);
+}
+
+input[type="submit"],.thnkbutton {
+	display: inline-block;
+	padding: 4px 10px 4px;
+	margin-bottom: 0;
+	font-size: 13px;
+	line-height: 18px;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	vertical-align: middle;
+	background-color: #005FA2;
+	border: 1px solid #ccc;
+	border-bottom-color: #bbb;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px
+		rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px
+		rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px
+		rgba(0, 0, 0, 0.05);
+	cursor: pointer;
+	filter: progid :       DXImageTransform.Microsoft.gradient (      
+		enabled = 
+		    
+		  false );
+	*margin-left: .3em;
+	color: #FFFFFF;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+input[type="submit"]:hover,.thnkbutton:hover {
+	background-color: #0096ff;
+}
+
+.thnksectionwrapper {
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px
+		rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px
+		rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px
+		rgba(0, 0, 0, 0.05);
+}
+
+.thnkbutton a:link {
+	color: #FFFFFF;
+}
+
+.thnkbutton a:hover {
+	color: #FFFFFF;
+}
+
+select {
+	border: 1px solid #929292;
+	font-size: 1.1em;
+	padding: 2px;
+	width: auto;
+}
+
+li.modtype_forum {
+	display: none;
+}
+
+.editing li.modtype_forum {
+	display: block;
+}
+
+.calendar_event_global {
+	background-color: #e02019;
+}
+
+.calendar_event_course {
+	background-color: #005fa2;
+}
+
+.calendar_event_group {
+	background-color: #000000;
+}
+
+.calendar_event_user {
+	background-color: #32abff;
+}
+
+.maincalendar .calendarmonth a {
+	color: #FFF;
+}
+
+.minicalendar .calendar_event_course,.minicalendar .duration_course {
+	border-color: #005fa2;
+}
+
+.minicalendar .calendar_event_course a,.minicalendar .duration_course a
+	{
+	color: #fff;
+}
+
+.minicalendar .calendar_event_global,.minicalendar .duration_global {
+	border-color: #e02019;
+}
+
+.minicalendar .calendar_event_global a,.minicalendar .duration_global a
+	{
+	color: #fff;
+}
+
+.minicalendar .calendar_event_user,.minicalendar .duration_user {
+	border-color: #32abff;
+}
+
+.minicalendar .calendar_event_user a,.minicalendar .duration_user a {
+	color: #fff;
+}
+
+.maincalendar .cal_courses_flt {
+	display: none;
+}
+
+.loginbox .signupform {
+	margin-top: 1em;
+	text-align: left;
+}
+
+.signuppanel .subcontent {
+	margin: 0px;
+	padding: 10px;
+	text-align: left;
+}
+
+.loginbox .guestsub {
+	display: none;
+}
+
+/*
+navmenu */
+.subnav a:link {
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+
+.subnav li.current a {
+	color: #E02019;
+}
+
+#thnklinksearch {
+	margin-top: 5px;
+	float: right;
+}
+
+#canvas {
+	height: 480px;
+	margin: 0 auto;
+	text-align: left;
+	width: 640px;
+}
+#hiddenstuff {
+	display: none;
+}
